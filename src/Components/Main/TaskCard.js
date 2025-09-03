@@ -38,14 +38,16 @@ const TaskCard = (props) => {
   // };
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         color: "#ffffff",
         width: "25%",
-        marginLeft: "20px"
+        marginLeft: "20px",
+
       }}
+    // card start from here
     >
-      <Stack style={{ fontSize: "larger" }}>{status || "missing"}</Stack>
+      <Stack sx={{ fontSize: "larger" }}>{status || "missing"}</Stack>
       <Box
         sx={{
           backgroundColor: "#1B2635",
@@ -119,7 +121,7 @@ const TaskCard = (props) => {
         </Button> */}
         </Stack>
       </Box>
-    </div>
+    </Box>
   );
 };
 

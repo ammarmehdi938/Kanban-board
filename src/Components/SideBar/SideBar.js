@@ -5,8 +5,9 @@ import Status from "./Status";
 import Priority from "./Priority";
 import Assignee from "./Assignee";
 import { useState } from "react";
-import { Button, Drawer, List, ListItem, ListItemText, Box } from "@mui/material";
-import { Label } from "@mui/icons-material";
+import { Button, Drawer, Box } from "@mui/material";
+import { Slide } from '@mui/material';
+
 
 // task = {
 //   title: "task 1",
@@ -28,31 +29,50 @@ const SideBAR = (props) => {
   }
   return (
     open ? (
-      <Box sx={{ backgroundColor: '#1B2635' }} >
-        <Box style={{ width: "320px", height: "100vh" }}>
-          <Drawer open={open} anchor="left" onClose={() => {
-            console.log('closing');
-            setOpen(false)
-          }}>
-            <Box sx={{
-              justifyContent: 'center', alignItems: 'center',
-              width: '320px', backgroundColor: '#1B2635',
-              height: '100vh'
-            }}>
-              <Title task={task} setTask={setTask} sx={{
-                display: 'flex',
-                justifyContent: 'center', alignItems: 'center'
-              }} />
-              <StartDate task={task} setTask={setTask} />
-              <EndDate task={task} setTask={setTask} />
-              <Status task={task} setTask={setTask} />
-              <Priority task={task} setTask={setTask} />
-              <Assignee task={task} setTask={setTask} />
-              <Button onClick={handleSave}>Create Task</Button>
-            </Box>
-          </Drawer>
+
+      <Drawer open={open} anchor="left"
+        onClose={() => {
+          console.log('closing');
+          setOpen(false)
+        }}
+        variant="temporary"
+        TransitionComponent={Slide} // ✅ force Slide
+        SlideProps={{
+          timeout: 2000, // ✅ animation duration in ms
+        }}
+        ModalProps={{
+          BackdropProps: {
+            sx: {
+              backdropFilter: 'none',
+              backgroundColor: 'transparent'
+            }
+          }
+        }}
+        PaperProps={{
+          sx: {
+            width: '320px',
+            backgroundColor: '#1B2635',
+          },
+        }}>
+
+        <Box sx={{
+          justifyContent: 'center', alignItems: 'center',
+          width: '320px', backgroundColor: '#1B2635',
+          height: '100vh'
+        }}>
+          <Title task={task} setTask={setTask} sx={{
+            display: 'flex',
+            justifyContent: 'center', alignItems: 'center'
+          }} />
+          <StartDate task={task} setTask={setTask} />
+          <EndDate task={task} setTask={setTask} />
+          <Status task={task} setTask={setTask} />
+          <Priority task={task} setTask={setTask} />
+          <Assignee task={task} setTask={setTask} />
+          <Button onClick={handleSave}>Create Task</Button>
         </Box>
-      </Box >
+      </Drawer>
+
     ) : null
 
 
