@@ -16,21 +16,22 @@ const StartDate = (props) => {
   };
 
   return (
-    <Box sx={{ marginLeft: '-30px' }}>
+    <Box sx={{
+      width:'250px',
+      mt:'20px'
+    }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           label="Start Date"
           onChange={(e) => handleStartDate(e)}
           sx={{
             border: "#233044 solid blue",
-            ml: "80px",
-            mt: "20px",
             borderRadius: "20px",
             backgroundColor: "#233044",
 
             "&:hover": {
-              borderColor: "#4782da",
-              boxShadow: "0 0 14px -4px #4381da",
+              borderColor: "#19bb84",
+              boxShadow: "0 0 14px -4px #19bb84",
             },
 
             "& .MuiInputLabel-root": {
@@ -39,11 +40,11 @@ const StartDate = (props) => {
             },
             "&:hover .MuiInputLabel-root": {
               // Label color on hover
-              color: "blue",
+              color: "#19bb84",
             },
             "& .MuiInputLabel-root.Mui-focused": {
               // Label color when focused
-              color: "blue",
+              color: "#19bb84",
             },
           }}
           slotProps={{

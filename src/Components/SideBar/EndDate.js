@@ -8,49 +8,51 @@ const EndDate = (props) => {
   const handleEndDate = (e) => {
     const date = new Date(e).toDateString();
     setTask({ ...task, endDate: date });
-   };
+  };
 
   return (
-    <Box sx={{marginLeft:'-30px'}}>
-    <LocalizationProvider 
-    dateAdapter={AdapterDayjs}>
-      <DatePicker
-        label="End Date"
-        onChange={(e) => handleEndDate(e)}
-        sx={{
-          border: "2px solid #233044",
-          ml: "80px",
-          mt: "20px",
-          borderRadius: "20px",
-          backgroundColor: "#233044",
+    <Box sx={{
+      width:'250px'
+    }}>
+      <LocalizationProvider
+        dateAdapter={AdapterDayjs}>
+        <DatePicker
+          label="End Date"
+          onChange={(e) => handleEndDate(e)}
+          sx={{
+            border: "2px solid #233044",
+            
+            mt: "20px",
+            borderRadius: "20px",
+            backgroundColor: "#233044",
 
-          "&:hover": {
-            borderColor: "#4782da",
-            boxShadow: "0 0 14px -4px #4381da",
-          },
-          "& .MuiInputLabel-root": {
-            // Default label color
-            color: "#ffffff",
-          },
-          "&:hover .MuiInputLabel-root": {
-            // Label color on hover
-            color: "blue",
-          },
-          "& .MuiInputLabel-root.Mui-focused": {
-            // Label color when focused
-            color: "blue",
-          },
-        }}
-        slotProps={{
-          textField: {
-            variant: "filled",
-            InputProps: {
-              disableUnderline: "true",
+            "&:hover": {
+              borderColor: "#19ab57",
+              boxShadow: "0 0 14px -4px #19bb84",
             },
-          },
-        }}
-      />
-    </LocalizationProvider>
+            "& .MuiInputLabel-root": {
+              // Default label color
+              color: "#ffffff",
+            },
+            "&:hover .MuiInputLabel-root": {
+              // Label color on hover
+              color: "#19ab57",
+            },
+            "& .MuiInputLabel-root.Mui-focused": {
+              // Label color when focused
+              color: "#19ab57",
+            },
+          }}
+          slotProps={{
+            textField: {
+              variant: "filled",
+              InputProps: {
+                disableUnderline: "true",
+              },
+            },
+          }}
+        />
+      </LocalizationProvider>
     </Box>
   );
 };
