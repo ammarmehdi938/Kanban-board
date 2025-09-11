@@ -11,6 +11,7 @@ const Title = (props) => {
   const CustomTextField = styled(TextField)(({ theme }) => ({
     input: {
       color: "white",
+      width:'212px',
     },
     backgroundColor: "#233044",
     border: "2px solid #233044",
@@ -19,19 +20,22 @@ const Title = (props) => {
     
 
     "&:hover": {
-      borderColor: "#4782da",
-      boxShadow: "0 0 14px -4px #4381da",
-      InputLabelProps: { color: "#b79274" },
+      borderColor: "#19bb84",
+      boxShadow: "0 0 14px -4px #19bb84",
+      InputLabelProps: { color: "" },
     },
     "&:hover label": {
-      color: "blue",
+      color: "#19bb84",
     },
   }));
 
   return (
     <div>
 
-      <Box sx={{marginLeft:'-20px'}}>
+      <Box 
+      sx={{ml:'-8px',
+        mt:'-40px'
+      }}>
       <CustomTextField
         label="Title"
         id="filled-basic"
@@ -41,17 +45,14 @@ const Title = (props) => {
         InputLabelProps={{
           sx: {
             color: "#ffffff",
-            "&.Mui-focused": { color: "blue", "&:hover": { color: "blue" } },
+            "&.Mui-focused": { color: "#19bb84", "&:hover": { color: "#19bb84" } },
           },
         }}
         variant="filled"
         InputProps={{
           disableUnderline: "true",
         }}
-        style={{
-          marginTop: "20px",
-          marginLeft: "90px",
-        }}
+        
       />
       {/* {save ? <h1>{title}</h1> : false} */}
 

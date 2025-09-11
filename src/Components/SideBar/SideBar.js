@@ -17,8 +17,6 @@ import { Slide } from '@mui/material';
 //   endDate: "31st aug, 2025",
 //   assignee: "ammar",
 // };
-
-
 const SideBAR = (props) => {
   const { data, updateTodo, open, setOpen } = props;
   const [task, setTask] = useState({});
@@ -36,9 +34,11 @@ const SideBAR = (props) => {
           setOpen(false)
         }}
         variant="temporary"
-        TransitionComponent={Slide} // ✅ force Slide
+        TransitionComponent={Slide}
+        transitionDuration={3000}
         SlideProps={{
-          timeout: 2000, // ✅ animation duration in ms
+          timeout: 2000,
+          direction: 'left'
         }}
         ModalProps={{
           BackdropProps: {
@@ -51,11 +51,17 @@ const SideBAR = (props) => {
         PaperProps={{
           sx: {
             width: '320px',
-            backgroundColor: '#1B2635',
+            backgroundColor: '#233044',
+
           },
-        }}>
+
+        }}
+      >
 
         <Box sx={{
+          display:'flex',
+          justifyContent:'center',
+          flexDirection:'column',
           justifyContent: 'center', alignItems: 'center',
           width: '320px', backgroundColor: '#1B2635',
           height: '100vh'
@@ -69,9 +75,22 @@ const SideBAR = (props) => {
           <Status task={task} setTask={setTask} />
           <Priority task={task} setTask={setTask} />
           <Assignee task={task} setTask={setTask} />
-          <Button onClick={handleSave}>Create Task</Button>
+          <Button onClick={handleSave}
+            sx={{
+              color: 'white',
+              backgroundColor: '#233044',
+              mt: '20px',
+              borderRadius: '20px',
+              width: '250px',
+              // height:'56px',
+              '&:hover': {
+                border: '2px solid #19bb84',
+                color: '#19bb84',
+                boxShadow: "0 0 14px -4px #19bb84",
+              },
+            }}>Create Task</Button>
         </Box>
-      </Drawer>
+      </Drawer >
 
     ) : null
 

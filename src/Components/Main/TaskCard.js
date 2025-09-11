@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Assignee from "../SideBar/Assignee";
 import { Avatar } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import Badge from '@mui/material/Badge';
 
 const TaskCard = (props) => {
   const { data, item, updateTodo } = props;
@@ -41,19 +42,17 @@ const TaskCard = (props) => {
     <Box
       sx={{
         color: "#ffffff",
-        width: "25%",
-        marginLeft: "20px",
-
+        width: "20%",
+        marginLeft: "10px",
       }}
-    // card start from here
     >
-      <Stack sx={{ fontSize: "larger" }}>{status || "missing"}</Stack>
+      <Stack sx={{ fontSize: "larger" }}>{status || "missing"}
+      </Stack>
       <Box
         sx={{
           backgroundColor: "#1B2635",
         }}
       >
-        {/* //   <Box sx={{ marginTop: '20px' }}> */}
         <Stack
           sx={{
             paddingLeft: "5px",

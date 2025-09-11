@@ -15,16 +15,15 @@ const Priority = (props) => {
 
   return (
     <div>
-      <Box sx={{marginLeft:'-30px'}}>
-      <FormControl variant="standard" sx={{ m: 1 }}></FormControl>
+      <Box>
+      <FormControl variant="standard"></FormControl>
       <FormControl
         variant="filled"
         sx={{
-          ml: "65px",
           mt: "20px",
-          minWidth: 120,
+          width:'250px',
           "&:hover .MuiInputLabel-root": {
-            color: "blue",
+            color: "#19ab57",
           },
         }}
       >
@@ -35,10 +34,10 @@ const Priority = (props) => {
               color: "#ffffff",
             },
             "&.MuiInputLabel-root.Mui-hover": {
-              color: "blue",
+              color: "#19ab57",
             },
             "&.MuiInputLabel-root.Mui-focused": {
-              color: "blue",
+              color: "#19ab57",
             },
           }}
         >
@@ -53,13 +52,12 @@ const Priority = (props) => {
           onChange={handleChange}
           sx={{
             border: "2px solid #233044 ",
-            width: "200%",
             borderRadius: "20px",
             backgroundColor: "#233044",
             "&:hover": {
               backgroundColor: '#233044',
-              borderColor: "#4782da",
-              boxShadow: "0 0 14px -4px #4381da",
+              borderColor: "#19ab57",
+              boxShadow: "0 0 14px -4px #19bb84",
             },
           }}
         >

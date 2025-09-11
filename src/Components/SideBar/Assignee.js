@@ -16,16 +16,15 @@ const Assignee = (props) => {
 
   return (
     <div>
-      <Box sx={{marginLeft:'-30px'}}>
-        <FormControl variant="standard" sx={{ m: 1 }}></FormControl>
+      <Box sx={{}}>
+        <FormControl variant="standard"></FormControl>
         <FormControl
           variant="filled"
           sx={{
-            ml: "65px",
             mt: "20px",
-            minWidth: 120,
+            width:'250px' ,
             "&:hover .MuiInputLabel-root": {
-              color: "blue",
+              color: "#19bb84",
             },
           }}
         >
@@ -35,12 +34,12 @@ const Assignee = (props) => {
               "&.MuiInputLabel-root": {
                 color: "#ffffff",
                 "&:hover": {
-                  color: "blue",
+                  color: "#19bb84",
                 },
               },
 
               "&.MuiInputLabel-root.Mui-focused": {
-                color: "blue",
+                color: "#19bb84",
               },
             }}
           >
@@ -62,13 +61,13 @@ const Assignee = (props) => {
             }}
             sx={{
               border: "2px solid #233044 ",
-              width: "200%",
+              // width: "200%",
               borderRadius: "20px",
               backgroundColor: "#233044",
               "&:hover": {
                 backgroundColor: '#233044',
-                borderColor: "#4782da",
-                boxShadow: "0 0 14px -4px #4381da",
+                borderColor: "#19bb84",
+                boxShadow: "0 0 14px -4px #19bb84",
               },
             }}
           >

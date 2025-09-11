@@ -1,10 +1,10 @@
 import TodoApp from "./pages/todoApp";
+import './App.css';
 
 function App() {
   return (
-    <div style={{ width: "100vw", margin: "0px", padding: "0px" }}>
       <TodoApp />
-    </div>
+    
   );
 }
 
