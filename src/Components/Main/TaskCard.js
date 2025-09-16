@@ -3,13 +3,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Assignee from "../SideBar/Assignee";
 import { Avatar } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import Badge from '@mui/material/Badge';
+import Badge from "@mui/material/Badge";
 
 const TaskCard = (props) => {
   const { data, item, updateTodo } = props;
   const { isEditing, setIsEditing } = props;
   const { title, startDate, endDate, status, priority, assignee } = item || {};
-
 
   // const handleDelete = (id) => {
   //   const filteredData = data.filter((i) => i.id !== id);
@@ -46,8 +45,7 @@ const TaskCard = (props) => {
         marginLeft: "10px",
       }}
     >
-      <Stack sx={{ fontSize: "larger" }}>{status || "missing"}
-      </Stack>
+      <Stack sx={{ fontSize: "larger" }}>{status || "missing"}</Stack>
       <Box
         sx={{
           backgroundColor: "#1B2635",
@@ -67,16 +65,17 @@ const TaskCard = (props) => {
           {priority || "High"}
         </Stack>
         {/* </Box> */}
-
         <Stack sx={{ marginTop: "10px", marginLeft: "10px" }}>
           {title || "create overFlow"}
         </Stack>{" "}
         <br />
         <Stack sx={{ marginLeft: "10px" }}>
-          {assignee ? <Avatar sx={{ bgcolor: "blue" }}>{assignee ? assignee : 'null'}</Avatar>
-            : null}
+          {assignee ? (
+            <Avatar sx={{ bgcolor: "blue" }}>
+              {assignee ? assignee : "null"}
+            </Avatar>
+          ) : null}
         </Stack>
-
         {/* <Checkbox
         type="radio" 
         checked={item.isDone}
@@ -84,17 +83,21 @@ const TaskCard = (props) => {
         style={{ marginLeft: "-15px" }}
         onChange={(e) => handleUpdate(e)}
       ></Checkbox> */}
-        <Stack direction="row" spacing={1} sx={{ marginTop: "10px", marginLeft: '10px' }}>
-          <Stack sx={{ color: "white", marginLeft: "10px", fontSize: '12px' }}>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ marginTop: "10px", marginLeft: "10px" }}
+        >
+          <Stack sx={{ color: "white", marginLeft: "10px", fontSize: "12px" }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <Box sx={{ display: "flex" }}>
-                <CalendarMonthIcon sx={{ fontSize: 'large' }} />
+                <CalendarMonthIcon sx={{ fontSize: "large" }} />
                 &nbsp;
                 {startDate || "missing"}
               </Box>
               &nbsp; -
-              <Box sx={{ display: "flex", alignItems: 'center' }}>
-                <CalendarMonthIcon sx={{ fontSize: 'large' }} />
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <CalendarMonthIcon sx={{ fontSize: "large" }} />
                 &nbsp;
                 {endDate || "missing"}
               </Box>
@@ -120,6 +123,7 @@ const TaskCard = (props) => {
         </Button> */}
         </Stack>
       </Box>
+      <Stack></Stack>
     </Box>
   );
 };
