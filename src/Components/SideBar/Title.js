@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 
 const Title = (props) => {
-  const { task, setTask , open} = props;
+  const { task, setTask, open } = props;
   const { title } = task;
   const handleTitle = (e) => {
     setTask({ ...task, title: e.target.value });
@@ -11,13 +11,12 @@ const Title = (props) => {
   const CustomTextField = styled(TextField)(({ theme }) => ({
     input: {
       color: "white",
-      width:'212px',
+      width: "212px",
     },
     backgroundColor: "#233044",
     border: "2px solid #233044",
     borderRadius: "20px",
     textDecoration: "none",
-    
 
     "&:hover": {
       borderColor: "#19bb84",
@@ -31,32 +30,30 @@ const Title = (props) => {
 
   return (
     <div>
+      <Box sx={{ ml: "-8px", mt: "-40px" }}>
+        <CustomTextField
+          label="Title"
+          id="filled-basic"
+          onChange={(e) => handleTitle(e)}
+          value={task.title}
+          autoFocus
+          InputLabelProps={{
+            sx: {
+              color: "#ffffff",
+              "&.Mui-focused": {
+                color: "#19bb84",
+                "&:hover": { color: "#19bb84" },
+              },
+            },
+          }}
+          variant="filled"
+          InputProps={{
+            disableUnderline: "true",
+          }}
+        />
+        {/* {save ? <h1>{title}</h1> : false} */}
 
-      <Box 
-      sx={{ml:'-8px',
-        mt:'-40px'
-      }}>
-      <CustomTextField
-        label="Title"
-        id="filled-basic"
-        onChange={(e) => handleTitle(e)}
-        value={task.title}
-        autoFocus
-        InputLabelProps={{
-          sx: {
-            color: "#ffffff",
-            "&.Mui-focused": { color: "#19bb84", "&:hover": { color: "#19bb84" } },
-          },
-        }}
-        variant="filled"
-        InputProps={{
-          disableUnderline: "true",
-        }}
-        
-      />
-      {/* {save ? <h1>{title}</h1> : false} */}
-
-      {/* <div>
+        {/* <div>
         <Button onClick={() => setSave(true)}>save</Button>
       </div> */}
       </Box>

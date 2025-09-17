@@ -9,11 +9,17 @@ const Main = (props) => {
   const { data, updateTodo, setOpen } = props;
 
   return (
-    <div style={{
-      display: 'flex', flexDirection: 'column',
-      backgroundColor: "#0b1018ff", width: '100%', height: '100vh',
-
-    }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#0b1018ff",
+        width: "100%",
+        height: "100vh",
+        overflowY: "hidder",
+        overflowX: "hidden",
+      }}
+    >
       <Header setOpen={setOpen} />
 
       <MainHeader />

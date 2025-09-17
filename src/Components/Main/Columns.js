@@ -4,11 +4,17 @@ import { useState } from "react";
 import Column from "./Column";
 import AddIcon from "@mui/icons-material/Add";
 import { MuiColorInput } from "mui-color-input";
+import DynamicTask from "./DynamicTask";
 
 const Columns = (props) => {
-  const { columns, data, updateTodo } = props;
-
   const [createTask, setCreateTask] = useState(false);
+  const { columns, data, updateTodo } = props;
+  console.log("data in columns", data);
+
+  // Function to handle the creation of a new task
+  const handleCreateTask = () => {
+    setCreateTask(true);
+  };
 
   return (
     <Box
@@ -18,7 +24,9 @@ const Columns = (props) => {
         gap: 2,
         marginLeft: "15px",
         color: "#ffffff",
-        overflowX: "auto",
+        height: "100%",
+        marginBottom: "10px",
+        // overflowX: "auto",
       }}
     >
       {columns.map((item) => {
@@ -42,7 +50,8 @@ const Columns = (props) => {
                 display: "flex",
                 flexDirection: "column",
                 overflowY: "auto",
-                minHeight: "100%",
+                overflowX: "auto",
+                height: "500px",
                 marginBottom: "10px",
                 boxSizing: "border-box",
               }}
@@ -72,13 +81,15 @@ const Columns = (props) => {
       <Box
         sx={{
           backgroundColor: "#1B2635",
-          height: "100%",
+          height: "500px",
           border: "2px solid #19bb84",
           borderRadius: "10px",
           overflowY: "auto",
         }}
       >
-        <Column createTask={createTask} setCreateTask={setCreateTask} />
+        <Column handleCreateTask={handleCreateTask} />
+
+        <DynamicTask createTask={createTask} setCreateTask={setCreateTask} />
       </Box>
     </Box>
   );
