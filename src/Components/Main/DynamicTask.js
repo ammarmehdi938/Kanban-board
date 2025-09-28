@@ -1,7 +1,9 @@
-import { Box } from "@mui/material";
+import { Box } from "@mui/material";  
 
 const DynamicTask = (props) => {
-  const { createTask, setCreateTask } = props;
+  const { createTask, setCreateTask, color, setColor, taskTitle } = props;
+  console.log("Selected color:", color);
+  const background = color || "#000000";
 
   return (
     <Box
@@ -11,10 +13,13 @@ const DynamicTask = (props) => {
         gap: 2,
         alignItems: "center",
         width: "260px",
+        height: "500px",
         overflowX: "auto",
+        backgroundColor: background,
+        borderRadius: "10px",
       }}
     >
-      {createTask ? <div>DynamicTask</div> : null}
+      <Box sx={{ mt: 2 }}>{taskTitle || "No Title"}</Box>
     </Box>
   );
 };

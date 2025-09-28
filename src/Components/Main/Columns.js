@@ -1,15 +1,15 @@
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button, Divider, Stack } from "@mui/material";
 import TaskCard from "./TaskCard";
 import { useState } from "react";
 import Column from "./Column";
-import AddIcon from "@mui/icons-material/Add";
-import { MuiColorInput } from "mui-color-input";
 import DynamicTask from "./DynamicTask";
 
 const Columns = (props) => {
   const [createTask, setCreateTask] = useState(false);
-  const { columns, data, updateTodo } = props;
-  console.log("data in columns", data);
+  const [color, setColor] = useState("#000000 ");
+  const [taskTitle, setTaskTitle] = useState("");
+
+  const { columns, data, updateTodo, CustomTextField } = props;
 
   // Function to handle the creation of a new task
   const handleCreateTask = () => {
@@ -26,7 +26,7 @@ const Columns = (props) => {
         color: "#ffffff",
         height: "100%",
         marginBottom: "10px",
-        // overflowX: "auto",
+        overflowY: "auto",
       }}
     >
       {columns.map((item) => {
@@ -38,58 +38,151 @@ const Columns = (props) => {
             <Box
               sx={{
                 backgroundColor: "#1B2635",
-                borderRadius: "10px",
+                backdropFilter: "blur(20px)",
+                borderRadius: "16px",
                 padding: "4px",
-                border: "2px solid #19bb84",
-                boxShadow: "0px 0px 4px #19bb84",
-                width: "250px",
-                minWidth: "200px",
-                // borderRadius: '10px',
-                display: "block",
-                padding: "10px",
-                display: "flex",
-                flexDirection: "column",
-                overflowY: "auto",
-                overflowX: "auto",
                 height: "500px",
-                marginBottom: "10px",
-                boxSizing: "border-box",
+                width: "250px",
+                boxShadow: "0 8px 32px #0000004D",
+                transition: "transform 0.3s ease , box-shadow 0.3s ease",
+
+                "&:hover": {
+                  //       transform: translateY(-2px);
+                  // box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+                  // border-color: rgba(255, 255, 255, 0.15);
+                  // transform: "translateY(-2px)",
+
+                  boxShadow: "0 12px 40px #00000066",
+                  borderColor: "#FFFFFF26",
+                },
               }}
             >
-              <span display="inline">
-                {item.label}
-                {/* {<Badge badgeContent={4} color="primary">
-                            {columnData.length}
-                        </Badge>} */}
-                {columnData.length}
-              </span>
-              {columnData.length
-                ? columnData.map((item, index) => {
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "12px 0",
+                }}
+              >
+                <Box
+                  sx={{
+                    fontWeight: "600px",
+                    fontSize: "20px",
+                  }}
+                >
+                  {" "}
+                  {item.label}
+                </Box>
+                {/* background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            min-width: 24px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3); */}
+
+                <Box
+                  sx={{
+                    background: "linear-gradient(45deg, #3b82f6, #1d4ed8)",
+                    borderRadius: "22px",
+                    padding: "0.25rem 0.75rem",
+                    fontSize: "0.8rem",
+                    textAlign: "center",
+                    boxShadow: "0 2px 8px #3B82F64D",
+                  }}
+                >
+                  {columnData.length}
+                </Box>
+              </Box>
+              <Divider
+                sx={{
+                  color: "#ffffff",
+                  width: "200px",
+                  textAlign: "center",
+                }}
+              />
+
+              <Box sx={{}}>
+                {columnData.length ? (
+                  columnData.map((item, index) => {
                     return (
-                      <TaskCard
-                        data={data}
-                        item={item}
-                        updateTodo={updateTodo}
-                      />
+                      <Box>
+                        <TaskCard
+                          data={data}
+                          item={item}
+                          updateTodo={updateTodo}
+                        />
+                      </Box>
                     );
                   })
-                : "No Task Found"}
+                ) : (
+                  <Box
+                    sx={{
+                      textAlign: "center",
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Box sx={{ padding: "12px" }}>No Task Found</Box>
+                  </Box>
+                )}
+              </Box>
             </Box>
           </Box>
         );
       })}
       <Box
         sx={{
-          backgroundColor: "#1B2635",
+          // backgroundColor: "#1B2635",
+          border: "2px dashed #ffffff",
+          borderRadius: "16px",
           height: "500px",
-          border: "2px solid #19bb84",
-          borderRadius: "10px",
-          overflowY: "auto",
+          minWidth: "200px",
+          cursor: "pointer",
+          backdropFilter: "blur(10px)",
+
+          //           border-color: rgba(255, 255, 255, 0.4);
+          // background: rgba(27, 38, 53, 0.8);
+          // transform: translateY(-4px);
+          // box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+          "&:hover": {
+            borderColor: "#FFFFFF66",
+            backgroundColor: "#1B2635CC",
+            // transform: "translate(-4px)",
+          },
         }}
       >
-        <Column handleCreateTask={handleCreateTask} />
-
-        <DynamicTask createTask={createTask} setCreateTask={setCreateTask} />
+        <Column
+          handleCreateTask={handleCreateTask}
+          color={color}
+          setColor={setColor}
+          taskTitle={taskTitle}
+          setTaskTitle={setTaskTitle}
+        />
+      </Box>
+      <Box>
+        {createTask && (
+          <Box
+            sx={{
+              border: "2px solid #19bb84",
+              backgroundColor: color,
+              borderRadius: "10px",
+            }}
+          >
+            <DynamicTask
+              createTask={createTask}
+              setCreateTask={setCreateTask}
+              taskTitle={taskTitle}
+              color={color}
+              setColor={setColor}
+            />
+          </Box>
+        )}
       </Box>
     </Box>
   );

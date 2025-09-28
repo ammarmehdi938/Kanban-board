@@ -11,17 +11,18 @@ const EndDate = (props) => {
   };
 
   return (
-    <Box sx={{
-      width:'250px'
-    }}>
-      <LocalizationProvider
-        dateAdapter={AdapterDayjs}>
+    <Box
+      sx={{
+        width: "250px",
+      }}
+    >
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           label="End Date"
           onChange={(e) => handleEndDate(e)}
           sx={{
             border: "2px solid #233044",
-            
+
             mt: "20px",
             borderRadius: "20px",
             backgroundColor: "#233044",

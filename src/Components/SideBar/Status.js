@@ -17,12 +17,12 @@ const Status = (props) => {
   return (
     <div>
       <Box>
-        <FormControl variant="standard" ></FormControl>
+        <FormControl variant="standard"></FormControl>
         <FormControl
           variant="filled"
           sx={{
-            width:'250px',
-            mt:'20px',
+            width: "250px",
+            mt: "20px",
             // "&:hover":{background}
             "&:hover .MuiInputLabel-root": {
               color: "#19ab57",
@@ -50,7 +50,7 @@ const Status = (props) => {
             value={status}
             onChange={(event, selected) => {
               console.log(event, selected);
-              handleChange(event)
+              handleChange(event);
             }}
             sx={{
               border: "2px solid #233044 ",
@@ -58,7 +58,7 @@ const Status = (props) => {
               borderRadius: "20px",
               backgroundColor: "#233044",
               "&:hover": {
-                backgroundColor: '#233044',
+                backgroundColor: "#233044",
                 borderColor: "#19ab57",
                 boxShadow: "0 0 14px -4px #19bb84",
               },

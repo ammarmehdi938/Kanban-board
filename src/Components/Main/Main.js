@@ -16,8 +16,16 @@ const Main = (props) => {
         backgroundColor: "#0b1018ff",
         width: "100%",
         height: "100vh",
-        overflowY: "hidder",
+        overflowY: "hidden",
         overflowX: "hidden",
+        minHeight: "100vh",
+        backgroundColor: "#0D1117",
+        backgroundImage: `
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 4px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 4px, transparent 1px)
+        `,
+        backgroundSize: "60px 60px", // size of the grid cells
+        color: "#fff", // optional: text color
       }}
     >
       <Header setOpen={setOpen} />

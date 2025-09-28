@@ -22,7 +22,7 @@ const Assignee = (props) => {
           variant="filled"
           sx={{
             mt: "20px",
-            width:'250px' ,
+            width: "250px",
             "&:hover .MuiInputLabel-root": {
               color: "#19bb84",
             },
@@ -65,7 +65,7 @@ const Assignee = (props) => {
               borderRadius: "20px",
               backgroundColor: "#233044",
               "&:hover": {
-                backgroundColor: '#233044',
+                backgroundColor: "#233044",
                 borderColor: "#19bb84",
                 boxShadow: "0 0 14px -4px #19bb84",
               },

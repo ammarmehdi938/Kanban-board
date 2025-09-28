@@ -1,32 +1,31 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
-
+import MainContainerStyle from "./styles";
+import { styled, createTheme, ThemeProvider, margin } from "@mui/system";
 const MainHeader = () => {
-
   return (
-
-    <Box style={{ color: 'white'}}>
-
-      <h2 style={{ marginLeft: "20px", marginTop: "50px" }}>
-        Feb <br />
-        &nbsp; 4
-      </h2>
-      <span style={{ direction: "column" }}>
-        <h1
-          style={{ marginLeft: "25", marginTop: "-75px", marginLeft: "80px" }}
-        >
-          Good Afternoon
-        </h1>
-        <br />
-        <h1 style={{ marginTop: "-40px", marginLeft: "80px" }}>
-          What's your plan for today?
-        </h1>
-      </span>
-
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        flexDirection: "column",
+        marginTop: "-20px",
+      }}
+    >
+      <Typography sx={{ color: "#1B2635", fontSize: "20px" }}>Feb 4</Typography>
+      <Typography style={{ color: "#ffffff", fontSize: "50px" }}>
+        Good Morning
+      </Typography>
+      <Typography
+        sx={{
+          color: "#1B2635",
+          fontSize: "20px",
+        }}
+      >
+        What's your plan for today?
+      </Typography>
     </Box>
-
-
-  )
-}
+  );
+};
 
 export default MainHeader;

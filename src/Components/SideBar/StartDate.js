@@ -12,14 +12,16 @@ const StartDate = (props) => {
   const handleStartDate = (e) => {
     const date = new Date(e).toDateString();
     setTask({ ...task, startDate: date });
-    console.log(e)
+    console.log(e);
   };
 
   return (
-    <Box sx={{
-      width:'250px',
-      mt:'20px'
-    }}>
+    <Box
+      sx={{
+        width: "250px",
+        mt: "20px",
+      }}
+    >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           label="Start Date"
