@@ -1,10 +1,6 @@
-import { Checkbox, Box, IconButton, Stack, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Assignee from "../SideBar/Assignee";
+import { Box, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
-import Divider from "@mui/material/Divider";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import Badge from "@mui/material/Badge";
 
 const TaskCard = (props) => {
   const { data, item, updateTodo } = props;

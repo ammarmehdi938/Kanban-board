@@ -28,10 +28,11 @@ const Header = (props) => {
           backdropFilter: "blur(10px)",
           backgroundColor: "#1B2635CC",
           width: "120px",
-          mt: "10px",
+          mt: "12px",
           color: "#ffffff",
           border: "1px solid #FFFFFF33",
           animation: "pulse 2s infinite",
+          padding: "10px",
 
           "&:hover": {
             // borderColor: "#19bb84",

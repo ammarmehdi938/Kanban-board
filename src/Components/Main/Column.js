@@ -4,10 +4,19 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import AddIcon from "@mui/icons-material/Add";
 import { MuiColorInput } from "mui-color-input";
-import CheckBox from "./CheckBox";
+import CheckBoxes from "./CheckBoxes";
 
 const Column = (props) => {
-  const { handleCreateTask, color, setColor, taskTitle, setTaskTitle } = props;
+  const {
+    handleCreateTask,
+    color,
+    setColor,
+    taskTitle,
+    setTaskTitle,
+    selected,
+    setSelected,
+    handleCheckBox,
+  } = props;
   const [addTask, setAddTask] = useState(false);
 
   const handleColorChange = (newColor) => {
@@ -62,44 +71,31 @@ const Column = (props) => {
   return (
     <Box
       sx={{
+        width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
-        gap: 2,
         alignItems: "center",
-        justifyContent: "center",
-        width: "260px",
-        minWidth: "260px",
+        justifyContent: addTask ? "start" : "center",
         padding: 2,
-        // borderRadius: 2,
-        flex: 0,
+        boxSizing: "border-box",
       }}
     >
       <Box>
         {/* sx={{ color: "#ffffff", fontSize: "200px" }} */}
-        <span
-          onClick={handleAddTask}
-          style={
-            {
-              //  width: 48px;
-              // height: 48px;
-              // border-radius: 50%;
-              // background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-              // display: flex;
-              // align-items: center;
-              // justify-content: center;
-              // color: #ffffff;
-              // font-size: 24px;
-              // font-weight: 300;
-              // margin-bottom: 0.5rem;
-              // box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
-            }
-          }
-        >
+        <span onClick={handleAddTask} style={{}}>
           +
         </span>
       </Box>
       {addTask ? (
-        <Box>
+        <Box
+          sx={{
+            fontSize: "32px",
+            color: "#19bb84",
+            cursor: "pointer",
+            userSelect: "none",
+          }}
+        >
           <CustomTextField
             label="Title"
             id="filled-basic"
@@ -119,6 +115,7 @@ const Column = (props) => {
             InputProps={{
               disableUnderline: "true",
             }}
+            sx={{ width: "100%" }}
           ></CustomTextField>
 
           <CustomColorInput
@@ -130,7 +127,7 @@ const Column = (props) => {
             InputProps={{ disableUnderline: true }}
             sx={{
               mt: 2,
-              width: "226px",
+              width: "100%",
 
               "& .MuiFilledInput-root": {
                 backgroundColor: "#233044",
@@ -160,9 +157,11 @@ const Column = (props) => {
               },
             }}
           />
-
-          <Checkbox />
-
+          <CheckBoxes
+            selected={selected}
+            setSelected={setSelected}
+            handleCheckBox={handleCheckBox}
+          />
           <Button
             onClick={handleCreateTask}
             sx={{

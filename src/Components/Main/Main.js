@@ -28,7 +28,13 @@ const Main = (props) => {
         color: "#fff", // optional: text color
       }}
     >
-      <Header setOpen={setOpen} />
+      <span
+        style={{
+          marginTop: "10px",
+        }}
+      >
+        <Header setOpen={setOpen} />
+      </span>
 
       <MainHeader />
 

@@ -11,6 +11,16 @@ const Columns = (props) => {
 
   const { columns, data, updateTodo, CustomTextField } = props;
 
+  // Column Data
+  const [selected, setSelected] = useState(null);
+
+  const handleCheckBox = (label) => () => {
+    if (selected === label) {
+    } else {
+      setSelected(label);
+    }
+  };
+
   // Function to handle the creation of a new task
   const handleCreateTask = () => {
     setCreateTask(true);
@@ -26,7 +36,8 @@ const Columns = (props) => {
         color: "#ffffff",
         height: "100%",
         marginBottom: "10px",
-        overflowY: "auto",
+        overflowX: "auto",
+        alignItems: "flex-start",
       }}
     >
       {columns.map((item) => {
@@ -34,126 +45,114 @@ const Columns = (props) => {
           (dataItem) => dataItem.status === item.key
         );
         return (
-          <Box>
+          <Box
+            sx={{
+              backgroundColor: "#1B2635",
+              backdropFilter: "blur(20px)",
+              borderRadius: "16px",
+              padding: "4px",
+              height: "500px",
+              width: "250px",
+              marginTop: "15px",
+              boxShadow: "0 8px 32px #0000004D",
+              transition: "transform 0.3s ease , box-shadow 0.3s ease",
+
+              "&:hover": {
+                transform: "translateY(-4px)",
+                boxShadow: `0 15px 50px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.1)`,
+              },
+            }}
+          >
             <Box
               sx={{
-                backgroundColor: "#1B2635",
-                backdropFilter: "blur(20px)",
-                borderRadius: "16px",
-                padding: "4px",
-                height: "500px",
-                width: "250px",
-                boxShadow: "0 8px 32px #0000004D",
-                transition: "transform 0.3s ease , box-shadow 0.3s ease",
-
-                "&:hover": {
-                  //       transform: translateY(-2px);
-                  // box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-                  // border-color: rgba(255, 255, 255, 0.15);
-                  // transform: "translateY(-2px)",
-
-                  boxShadow: "0 12px 40px #00000066",
-                  borderColor: "#FFFFFF26",
-                },
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "12px 0",
               }}
             >
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "12px 0",
+                  fontWeight: "bold ",
+                  fontSize: "20px",
+                  marginLeft: "15px",
                 }}
               >
-                <Box
-                  sx={{
-                    fontWeight: "600px",
-                    fontSize: "20px",
-                  }}
-                >
-                  {" "}
-                  {item.label}
-                </Box>
-                {/* background: linear-gradient(45deg, #3b82f6, #1d4ed8);
-            color: #ffffff;
-            border-radius: 12px;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.8rem;
-            font-weight: 500;
-            min-width: 24px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3); */}
-
-                <Box
-                  sx={{
-                    background: "linear-gradient(45deg, #3b82f6, #1d4ed8)",
-                    borderRadius: "22px",
-                    padding: "0.25rem 0.75rem",
-                    fontSize: "0.8rem",
-                    textAlign: "center",
-                    boxShadow: "0 2px 8px #3B82F64D",
-                  }}
-                >
-                  {columnData.length}
-                </Box>
+                {" "}
+                {item.label}
               </Box>
-              <Divider
+
+              <Box
                 sx={{
-                  color: "#ffffff",
-                  width: "200px",
+                  background: "linear-gradient(45deg, #3b82f6, #1d4ed8)",
+                  borderRadius: "22px",
+                  padding: "0.25rem 0.75rem",
+                  fontSize: "0.8rem",
                   textAlign: "center",
+                  boxShadow: "0 2px 8px #3B82F64D",
+                  marginRight: "15px",
                 }}
-              />
-
-              <Box sx={{}}>
-                {columnData.length ? (
-                  columnData.map((item, index) => {
-                    return (
-                      <Box>
-                        <TaskCard
-                          data={data}
-                          item={item}
-                          updateTodo={updateTodo}
-                        />
-                      </Box>
-                    );
-                  })
-                ) : (
-                  <Box
-                    sx={{
-                      textAlign: "center",
-                      height: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Box sx={{ padding: "12px" }}>No Task Found</Box>
-                  </Box>
-                )}
+              >
+                {columnData.length}
               </Box>
+            </Box>
+            <Divider
+              sx={{
+                color: "#ffffff",
+                width: "200px",
+                textAlign: "center",
+              }}
+            />
+
+            <Box>
+              {columnData.length ? (
+                columnData.map((item, index) => {
+                  return (
+                    <Box>
+                      <TaskCard
+                        data={data}
+                        item={item}
+                        updateTodo={updateTodo}
+                      />
+                    </Box>
+                  );
+                })
+              ) : (
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "12px",
+                    marginTop: "50px",
+                    color: "#ffffff4d",
+                  }}
+                >
+                  No Task Found
+                </Box>
+              )}
             </Box>
           </Box>
         );
       })}
       <Box
         sx={{
-          // backgroundColor: "#1B2635",
-          border: "2px dashed #ffffff",
-          borderRadius: "16px",
+          backgroundColor: "#1B2635",
+          border: "2px dashed #ffffff33",
+          width: "250px",
           height: "500px",
-          minWidth: "200px",
+          borderRadius: "16px",
           cursor: "pointer",
-          backdropFilter: "blur(10px)",
-
-          //           border-color: rgba(255, 255, 255, 0.4);
-          // background: rgba(27, 38, 53, 0.8);
-          // transform: translateY(-4px);
-          // box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
           "&:hover": {
-            borderColor: "#FFFFFF66",
-            backgroundColor: "#1B2635CC",
-            // transform: "translate(-4px)",
+            borderColor: "#0f69c466",
+            // backgroundColor: "#1b263599",
+            // boxShadow: "0 15px 35px #0000004d",
+            transform: "translateZ(4px)",
+            boxShadow: `0 15px 50px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px #255ae21a`,
           },
         }}
       >
@@ -163,27 +162,37 @@ const Columns = (props) => {
           setColor={setColor}
           taskTitle={taskTitle}
           setTaskTitle={setTaskTitle}
+          selected={selected}
+          setSelected={setSelected}
+          handleCheckBox={handleCheckBox}
         />
       </Box>
-      <Box>
-        {createTask && (
-          <Box
-            sx={{
-              border: "2px solid #19bb84",
-              backgroundColor: color,
-              borderRadius: "10px",
-            }}
-          >
-            <DynamicTask
-              createTask={createTask}
-              setCreateTask={setCreateTask}
-              taskTitle={taskTitle}
-              color={color}
-              setColor={setColor}
-            />
-          </Box>
-        )}
-      </Box>
+      {createTask && (
+        <Box
+          sx={{
+            backgroundColor: color,
+            border: "2px solid #19bb84",
+            borderRadius: "16px",
+            width: "250px",
+            height: "500px",
+            marginTop: "15px",
+            boxShadow: "0 8px 32px #0000004D",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <DynamicTask
+            createTask={createTask}
+            setCreateTask={setCreateTask}
+            taskTitle={taskTitle}
+            color={color}
+            setColor={setColor}
+            selected={selected}
+            setSelected={setSelected}
+            handleCheckBox={handleCheckBox}
+          />
+        </Box>
+      )}
     </Box>
   );
 };
