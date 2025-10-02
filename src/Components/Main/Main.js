@@ -1,12 +1,12 @@
 import MainHeader from "./MainHeader";
 import AddTodoButton from "./AddTodoButton";
-import TaskCard from "./TaskCard";
+
 import Header from "./Header";
 import Columns from "./Columns";
 import { STATUS } from "../SideBar/Utils";
 
 const Main = (props) => {
-  const { data, updateTodo, setOpen } = props;
+  const { data, updateTodo, setOpen, columns, setColumns } = props;
 
   return (
     <div
@@ -19,7 +19,6 @@ const Main = (props) => {
         overflowY: "hidden",
         overflowX: "hidden",
         minHeight: "100vh",
-        backgroundColor: "#0D1117",
         backgroundImage: `
           linear-gradient(to right, rgba(255, 255, 255, 0.05) 4px, transparent 1px),
           linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 4px, transparent 1px)
@@ -40,7 +39,12 @@ const Main = (props) => {
 
       <AddTodoButton data={data} updateTodo={updateTodo} />
 
-      <Columns columns={STATUS} data={data} updateTodo={updateTodo} />
+      <Columns
+        data={data}
+        updateTodo={updateTodo}
+        columns={columns}
+        setColumns={setColumns}
+      />
     </div>
   );
 };

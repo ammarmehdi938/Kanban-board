@@ -1,31 +1,42 @@
-import React, { useState } from "react";
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 
 const CheckBoxes = (props) => {
-  const { selected, setSelected, handleCheckBox } = props;
+  const { newColumn, setNewColumn } = props;
+
+  const handleCheckBox = (event) => {
+    const { name, checked } = event.target;
+
+    setNewColumn({
+      isInitial: name === "isInitial" ? checked : false,
+      isFinal: name === "isFinal" ? checked : false,
+    });
+  };
+  console.log(newColumn);
 
   return (
     <FormGroup>
       <FormControlLabel
         control={
           <Checkbox
-            checked={selected === "Is-Initialize"}
-            onChange={handleCheckBox("Is-Initialize")}
+            checked={newColumn.isInitial}
+            onChange={handleCheckBox}
+            name="isInitial"
           />
         }
-        label="Is-Initialize"
+        label="Is Initial"
       />
+
       <FormControlLabel
         control={
           <Checkbox
-            checked={selected === "Is-Finalize"}
-            onChange={handleCheckBox("Is-Finalize")}
+            checked={newColumn.isFinal}
+            onChange={handleCheckBox}
+            name="isFinal"
           />
         }
-        label="Is-Finalize"
+        label="Is Final"
       />
     </FormGroup>
   );
 };
-
 export default CheckBoxes;

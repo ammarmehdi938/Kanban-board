@@ -1,35 +1,18 @@
 import { Box, Button, Divider, Stack } from "@mui/material";
 import TaskCard from "./TaskCard";
 import { useState } from "react";
-import Column from "./Column";
-import DynamicTask from "./DynamicTask";
+import AddColumn from "./Column";
 
 const Columns = (props) => {
-  const [createTask, setCreateTask] = useState(false);
-  const [color, setColor] = useState("#000000 ");
-  const [taskTitle, setTaskTitle] = useState("");
-
-  const { columns, data, updateTodo, CustomTextField } = props;
-
-  // Column Data
-  const [selected, setSelected] = useState(null);
-
-  const handleCheckBox = (label) => () => {
-    if (selected === label) {
-    } else {
-      setSelected(label);
-    }
-  };
-
-  // Function to handle the creation of a new task
-  const handleCreateTask = () => {
-    setCreateTask(true);
-  };
+  const { columns, data, updateTodo, CustomTextField, setColumns } = props;
+  const [newColumn, setNewColumn] = useState({
+    isInitial: false,
+    isFinal: false,
+  });
 
   return (
     <Box
       sx={{
-        // height: '100%',
         display: "flex",
         gap: 2,
         marginLeft: "15px",
@@ -56,6 +39,7 @@ const Columns = (props) => {
               marginTop: "15px",
               boxShadow: "0 8px 32px #0000004D",
               transition: "transform 0.3s ease , box-shadow 0.3s ease",
+              minWidth: "250px",
 
               "&:hover": {
                 transform: "translateY(-4px)",
@@ -94,6 +78,7 @@ const Columns = (props) => {
                   marginRight: "15px",
                 }}
               >
+                {" "}
                 {columnData.length}
               </Box>
             </Box>
@@ -134,6 +119,10 @@ const Columns = (props) => {
                   No Task Found
                 </Box>
               )}
+              <Box sx={{ fontSize: "12px", color: "#ffffff99" }}>
+                {item.isInitial && <span>Initial</span>}
+                {item.isFinal && <span>Final</span>}
+              </Box>
             </Box>
           </Box>
         );
@@ -147,7 +136,7 @@ const Columns = (props) => {
           borderRadius: "16px",
           cursor: "pointer",
           "&:hover": {
-            borderColor: "#0f69c466",
+            borderColor: "#1d4ed8",
             // backgroundColor: "#1b263599",
             // boxShadow: "0 15px 35px #0000004d",
             transform: "translateZ(4px)",
@@ -156,43 +145,13 @@ const Columns = (props) => {
           },
         }}
       >
-        <Column
-          handleCreateTask={handleCreateTask}
-          color={color}
-          setColor={setColor}
-          taskTitle={taskTitle}
-          setTaskTitle={setTaskTitle}
-          selected={selected}
-          setSelected={setSelected}
-          handleCheckBox={handleCheckBox}
+        {/* TODO: change name column to AddColumn */}
+        <AddColumn
+          addColumn={setColumns}
+          newColumn={newColumn}
+          setNewColumn={setNewColumn}
         />
       </Box>
-      {createTask && (
-        <Box
-          sx={{
-            backgroundColor: color,
-            border: "2px solid #19bb84",
-            borderRadius: "16px",
-            width: "250px",
-            height: "500px",
-            marginTop: "15px",
-            boxShadow: "0 8px 32px #0000004D",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <DynamicTask
-            createTask={createTask}
-            setCreateTask={setCreateTask}
-            taskTitle={taskTitle}
-            color={color}
-            setColor={setColor}
-            selected={selected}
-            setSelected={setSelected}
-            handleCheckBox={handleCheckBox}
-          />
-        </Box>
-      )}
     </Box>
   );
 };

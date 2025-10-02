@@ -6,22 +6,9 @@ import AddIcon from "@mui/icons-material/Add";
 import { MuiColorInput } from "mui-color-input";
 import CheckBoxes from "./CheckBoxes";
 
-const Column = (props) => {
-  const {
-    handleCreateTask,
-    color,
-    setColor,
-    taskTitle,
-    setTaskTitle,
-    selected,
-    setSelected,
-    handleCheckBox,
-  } = props;
+const AddColumn = (props) => {
+  const { addColumn, newColumn, setNewColumn } = props;
   const [addTask, setAddTask] = useState(false);
-
-  const handleColorChange = (newColor) => {
-    setColor(newColor);
-  };
 
   const handleAddTask = () => {
     setAddTask(true);
@@ -68,6 +55,15 @@ const Column = (props) => {
       color: "white",
     },
   }));
+
+  const handleUpdateColumn = (key, value) => {
+    setNewColumn({ ...newColumn, [key]: value });
+  };
+
+  // Function to handle the creation of a new task
+  const handleCreateTask = () => {
+    addColumn((prev) => [...prev, newColumn]);
+  };
   return (
     <Box
       sx={{
@@ -81,11 +77,22 @@ const Column = (props) => {
         boxSizing: "border-box",
       }}
     >
-      <Box>
+      <Box onClick={handleAddTask} sx={{}}>
         {/* sx={{ color: "#ffffff", fontSize: "200px" }} */}
-        <span onClick={handleAddTask} style={{}}>
+        <Box
+          sx={{
+            background: "linear-gradient(45deg, #3b82f6, #1d4ed8)",
+            height: "50px",
+            width: "50px",
+            borderRadius: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "50px",
+          }}
+        >
           +
-        </span>
+        </Box>
       </Box>
       {addTask ? (
         <Box
@@ -99,9 +106,9 @@ const Column = (props) => {
           <CustomTextField
             label="Title"
             id="filled-basic"
-            // autoFocus
-            value={taskTitle}
-            onChange={(e) => setTaskTitle(e.target.value)}
+            autoFocus
+            value={newColumn.label ?? ""}
+            onChange={(e) => handleUpdateColumn("label", e.target.value)}
             InputLabelProps={{
               sx: {
                 color: "#ffffff",
@@ -119,9 +126,9 @@ const Column = (props) => {
           ></CustomTextField>
 
           <CustomColorInput
-            value={color}
+            value={newColumn.color ?? ""}
             format="hex"
-            onChange={handleColorChange}
+            onChange={(color) => handleUpdateColumn("color", color)}
             label="Color"
             variant="filled"
             InputProps={{ disableUnderline: true }}
@@ -157,11 +164,7 @@ const Column = (props) => {
               },
             }}
           />
-          <CheckBoxes
-            selected={selected}
-            setSelected={setSelected}
-            handleCheckBox={handleCheckBox}
-          />
+          <CheckBoxes newColumn={newColumn} setNewColumn={setNewColumn} />
           <Button
             onClick={handleCreateTask}
             sx={{
@@ -186,4 +189,4 @@ const Column = (props) => {
     </Box>
   );
 };
-export default Column;
+export default AddColumn;
