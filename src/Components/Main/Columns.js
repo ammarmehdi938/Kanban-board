@@ -1,10 +1,10 @@
 import { Box, Button, Divider, Stack } from "@mui/material";
 import TaskCard from "./TaskCard";
 import { useState } from "react";
-import AddColumn from "./Column";
+import AddColumn from "./addColumn";
 
 const Columns = (props) => {
-  const { columns, data, updateTodo, CustomTextField, setColumns } = props;
+  const { columns, data, updateTodo, setColumns } = props;
   const [newColumn, setNewColumn] = useState({
     isInitial: false,
     isFinal: false,
@@ -18,8 +18,9 @@ const Columns = (props) => {
         marginLeft: "15px",
         color: "#ffffff",
         height: "100%",
-        marginBottom: "10px",
+        padding: "30px 0px",
         overflowX: "auto",
+        overflowY: "hidden",
         alignItems: "flex-start",
       }}
     >
@@ -33,13 +34,15 @@ const Columns = (props) => {
               backgroundColor: "#1B2635",
               backdropFilter: "blur(20px)",
               borderRadius: "16px",
-              padding: "4px",
-              height: "500px",
-              width: "250px",
-              marginTop: "15px",
-              boxShadow: "0 8px 32px #0000004D",
+              border: `1px solid ${item.color}6d`,
+              // width: "250px",
+              height: "100%",
+              boxShadow: `3px 3px 10px -3px  ${item.color}2D`,
               transition: "transform 0.3s ease , box-shadow 0.3s ease",
               minWidth: "250px",
+              overflowY: "auto",
+              // paddingBottom: "10px",
+              // marginBottom: "10px",
 
               "&:hover": {
                 transform: "translateY(-4px)",
@@ -63,22 +66,20 @@ const Columns = (props) => {
                   marginLeft: "15px",
                 }}
               >
-                {" "}
                 {item.label}
               </Box>
-
               <Box
                 sx={{
-                  background: "linear-gradient(45deg, #3b82f6, #1d4ed8)",
+                  background: `linear-gradient(45deg, ${item.color}, ${item.color}3b)`,
                   borderRadius: "22px",
+
                   padding: "0.25rem 0.75rem",
                   fontSize: "0.8rem",
                   textAlign: "center",
-                  boxShadow: "0 2px 8px #3B82F64D",
+                  boxShadow: `0 2px 8px ${item.color}4D`,
                   marginRight: "15px",
                 }}
               >
-                {" "}
                 {columnData.length}
               </Box>
             </Box>
@@ -114,6 +115,7 @@ const Columns = (props) => {
                     padding: "12px",
                     marginTop: "50px",
                     color: "#ffffff4d",
+                    background: "color",
                   }}
                 >
                   No Task Found
@@ -132,7 +134,9 @@ const Columns = (props) => {
           backgroundColor: "#1B2635",
           border: "2px dashed #ffffff33",
           width: "250px",
-          height: "500px",
+          height: "100%",
+          // marginBottom: "10px",
+          // paddingBottom: "10px",
           borderRadius: "16px",
           cursor: "pointer",
           "&:hover": {
@@ -145,7 +149,6 @@ const Columns = (props) => {
           },
         }}
       >
-        {/* TODO: change name column to AddColumn */}
         <AddColumn
           addColumn={setColumns}
           newColumn={newColumn}

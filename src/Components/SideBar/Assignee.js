@@ -64,6 +64,7 @@ const Assignee = (props) => {
               // width: "200%",
               borderRadius: "20px",
               backgroundColor: "#233044",
+              color: "#ffffff",
               "&:hover": {
                 backgroundColor: "#233044",
                 borderColor: "#19bb84",

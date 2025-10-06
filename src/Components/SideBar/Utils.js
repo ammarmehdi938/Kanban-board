@@ -1,8 +1,8 @@
 export const STATUS = [
-  { key: "todo", label: "Todo", id: 1, color: "blue" },
-  { key: "inprogress", label: "In-Progress", id: 2, color: "yellow" },
-  { key: "ineview", label: "In Review", id: 3, color: "orange" },
-  { key: "completed", label: "Completed", id: 4, color: "green" },
+  { key: "todo", label: "Todo", id: 1, color: "#0000ff" },
+  { key: "inprogress", label: "In-Progress", id: 2, color: "#ffff00" },
+  { key: "ineview", label: "In Review", id: 3, color: "#ffa500" },
+  { key: "completed", label: "Completed", id: 4, color: "#028f74" },
   // { key: "yet to do", label: "Yet to do", id: 5, color: "black" },
   // { key: "yet to do", label: "Yet to do", id: 6, color: "black" },
   // { key: "yet to do", label: "Yet to do", id: 7, color: "black" },
@@ -12,7 +12,7 @@ export const STATUS = [
 export const PRIORITY = [
   { key: "high", label: "High", id: 4, color: "red" },
   { key: "medium", label: "Medium", id: 5, color: "brown" },
-  { ley: "low", label: "Low", id: "6", color: "blue" },
+  { key: "low", label: "Low", id: "6", color: "blue" },
 ];
 
 export const ASSIGNEE = [

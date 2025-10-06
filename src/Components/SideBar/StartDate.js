@@ -2,6 +2,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { ContactSupportOutlined } from "@mui/icons-material";
+import dayjs from "dayjs";
 
 import AirplayIcon from "@mui/icons-material/Airplay";
 import { Box } from "@mui/material";
@@ -20,40 +21,48 @@ const StartDate = (props) => {
       sx={{
         width: "250px",
         mt: "20px",
+        color: "#ffffff",
       }}
     >
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider
+        dateAdapter={AdapterDayjs}
+        sx={{ color: "#ffffff" }}
+      >
         <DatePicker
           label="Start Date"
+          value={startDate ? dayjs(startDate) : null}
           onChange={(e) => handleStartDate(e)}
-          sx={{
-            border: "#233044 solid blue",
-            borderRadius: "20px",
-            backgroundColor: "#233044",
-
-            "&:hover": {
-              borderColor: "#19bb84",
-              boxShadow: "0 0 14px -4px #19bb84",
-            },
-
-            "& .MuiInputLabel-root": {
-              // Default label color
-              color: "#ffffff",
-            },
-            "&:hover .MuiInputLabel-root": {
-              // Label color on hover
-              color: "#19bb84",
-            },
-            "& .MuiInputLabel-root.Mui-focused": {
-              // Label color when focused
-              color: "#19bb84",
-            },
-          }}
           slotProps={{
             textField: {
               variant: "filled",
               InputProps: {
-                disableUnderline: "true",
+                disableUnderline: true,
+              },
+
+              sx: {
+                "& .MuiFilledInput-input": {
+                  color: "#ffffff",
+                  "&::placeholder": { color: "#ffffff" },
+                },
+                // input::placeholder: {
+                //   color: "#ffffff",
+                // },
+                "& .MuiInputBase-root": {
+                  color: "#ffffff", // ✅ sometimes required
+                },
+
+                label: {
+                  color: "#ffffff", // ✅ label color (for completeness)
+                },
+                "& .MuiFilledInput-root": {
+                  backgroundColor: "#233044", 
+                },
+                "& .MuiInputLabel-root": {
+                  color: "#ffffff", // ✅ label (again, for good measure)
+                },
+                "& .MuiSvgIcon-root": {
+                  color: "#ffffff",
+                },
               },
             },
           }}

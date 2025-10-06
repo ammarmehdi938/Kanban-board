@@ -23,7 +23,6 @@ const Status = (props) => {
           sx={{
             width: "250px",
             mt: "20px",
-            // "&:hover":{background}
             "&:hover .MuiInputLabel-root": {
               color: "#19ab57",
             },
@@ -57,6 +56,7 @@ const Status = (props) => {
               textAlign: "center",
               borderRadius: "20px",
               backgroundColor: "#233044",
+              color: "#ffffff",
               "&:hover": {
                 backgroundColor: "#233044",
                 borderColor: "#19ab57",

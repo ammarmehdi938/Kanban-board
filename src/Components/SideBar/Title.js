@@ -5,9 +5,11 @@ import { styled } from "@mui/material/styles";
 const Title = (props) => {
   const { task, setTask, open } = props;
   const { title } = task;
+  const taskTitle = title || "";
   const handleTitle = (e) => {
     setTask({ ...task, title: e.target.value });
   };
+
   const CustomTextField = styled(TextField)(({ theme }) => ({
     input: {
       color: "white",

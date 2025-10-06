@@ -20,10 +20,16 @@ const SideBAR = (props) => {
   const { data, updateTodo, open, setOpen } = props;
   const [task, setTask] = useState({});
 
+  const newData = [...data, task];
+
   const handleSave = () => {
-    const newData = [...data, task];
-    updateTodo(newData);
+    if (task.title && task.title.trim() !== "") {
+      updateTodo(newData);
+    } else {
+      alert("Title is required");
+    }
   };
+
   return open ? (
     <Drawer
       open={open}

@@ -17,7 +17,7 @@ const MainHeader = () => {
       <Typography
         style={{ color: "#ffffff", fontSize: "40px", fontWeight: "bolder" }}
       >
-        Good Morning
+        Good Afternoon
       </Typography>
       <Typography
         sx={{

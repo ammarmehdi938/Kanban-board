@@ -54,6 +54,7 @@ const Priority = (props) => {
               border: "2px solid #233044 ",
               borderRadius: "20px",
               backgroundColor: "#233044",
+              color: "#ffffff",
               "&:hover": {
                 backgroundColor: "#233044",
                 borderColor: "#19ab57",
