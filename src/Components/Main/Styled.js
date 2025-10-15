@@ -24,6 +24,7 @@ export const CustomTextField = styled(TextField)(({ theme }) => ({
 export const CustomColorInput = styled(MuiColorInput)(({ theme }) => ({
   input: {
     color: "white",
+    
   },
   backgroundColor: "#233044",
   border: "2px solid #233044",

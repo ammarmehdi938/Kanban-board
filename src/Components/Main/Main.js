@@ -6,7 +6,7 @@ import Columns from "./Columns";
 import { STATUS } from "../SideBar/Utils";
 
 const Main = (props) => {
-  const { data, updateTodo, setOpen, columns, setColumns } = props;
+  const { data, updateTodo, columns, setColumns } = props;
 
   return (
     <div
@@ -32,12 +32,12 @@ const Main = (props) => {
           marginTop: "10px",
         }}
       >
-        <Header setOpen={setOpen} />
+        <Header />
       </span>
 
       <MainHeader />
 
-      <AddTodoButton data={data} updateTodo={updateTodo} />
+      {/* <AddTodoButton data={data} updateTodo={updateTodo} /> */}
 
       <Columns
         data={data}

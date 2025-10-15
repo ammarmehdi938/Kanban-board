@@ -1,10 +1,11 @@
 import TodoApp from "./pages/todoApp";
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
+    <>
       <TodoApp />
-    
+    </>
   );
 }
 

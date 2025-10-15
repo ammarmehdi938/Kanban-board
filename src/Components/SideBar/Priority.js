@@ -7,11 +7,11 @@ import { PRIORITY } from "./Utils";
 import { Box } from "@mui/material";
 
 const Priority = (props) => {
-  const { task, setTask } = props;
-  const { priority } = task;
-  const handleChange = (e) => {
-    setTask({ ...task, priority: e.target.value });
-  };
+  const { formik } = props;
+  // const { priority } = task;
+  // const handleChange = (e) => {
+  //   setTask({ ...task, priority: e.target.value });
+  // };
 
   return (
     <div>
@@ -48,8 +48,9 @@ const Priority = (props) => {
             id="demo-simple-select-filled"
             inputProps={{ "aria-label": "Without underline" }}
             disableUnderline
-            value={priority}
-            onChange={handleChange}
+            value={formik.value}
+            name="priority"
+            onChange={formik.handleChange}
             sx={{
               border: "2px solid #233044 ",
               borderRadius: "20px",

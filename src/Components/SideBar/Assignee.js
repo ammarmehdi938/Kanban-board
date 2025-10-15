@@ -7,12 +7,12 @@ import { Box } from "@mui/material";
 import { ASSIGNEE } from "./Utils";
 
 const Assignee = (props) => {
-  const { task, setTask } = props;
-  const { assignee } = task;
+  const { formik } = props;
+  // const { assignee } = task;
 
-  const handleChange = (e) => {
-    setTask({ ...task, assignee: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setTask({ ...task, assignee: e.target.value });
+  // };
 
   return (
     <div>
@@ -50,8 +50,9 @@ const Assignee = (props) => {
             id="demo-simple-select-filled"
             inputProps={{ "aria-label": "Without underline" }}
             disableUnderline
-            value={assignee}
-            onChange={handleChange}
+            name="assignee"
+            value={formik.value}
+            onChange={formik.handleChange}
             MenuProps={{
               sx: {
                 "&& .Mui-selected": {

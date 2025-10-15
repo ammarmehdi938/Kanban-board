@@ -6,11 +6,13 @@ import {
   Button,
   Box,
 } from "@mui/material";
+import { openTaskDrawer } from "../../Store/Actions/TodoActions";
+import { useDispatch } from "react-redux";
 const Header = (props) => {
-  const { open, setOpen } = props;
-
+  const { open } = props;
+  const dispatch = useDispatch();
   const handleSideber = () => {
-    setOpen(true);
+    openTaskDrawer(null, dispatch);
   };
 
   return (
@@ -22,7 +24,7 @@ const Header = (props) => {
       }}
     >
       <Button
-        onClick={() => setOpen(!open)}
+        onClick={handleSideber}
         sx={{
           borderRadius: "25px",
           backdropFilter: "blur(10px)",

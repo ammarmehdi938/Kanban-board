@@ -7,12 +7,12 @@ import { BorderColor } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import { STATUS } from "./Utils";
 const Status = (props) => {
-  const { task, setTask } = props;
-  const { status } = task;
-  const handleChange = (e) => {
-    console.log(e.target.value);
-    setTask({ ...task, status: e.target.value });
-  };
+  const { formik } = props;
+  // const { status } = task;
+  // const handleChange = (e) => {
+  //   console.log(e.target.value);
+  //   setTask({ ...task, status: e.target.value });
+  // };
 
   return (
     <div>
@@ -46,11 +46,9 @@ const Status = (props) => {
             id="demo-simple-select-filled"
             inputProps={{ "aria-label": "Without underline" }}
             disableUnderline
-            value={status}
-            onChange={(event, selected) => {
-              console.log(event, selected);
-              handleChange(event);
-            }}
+            name="status"
+            value={formik.value}
+            onChange={formik.handleChange}
             sx={{
               border: "2px solid #233044 ",
               textAlign: "center",

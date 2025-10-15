@@ -7,6 +7,10 @@ import Assignee from "./Assignee";
 import { useState } from "react";
 import { Button, Drawer, Box } from "@mui/material";
 import { Slide } from "@mui/material";
+import { useFormik } from "formik";
+import { validationSchema } from "../../Schema/Validation";
+import { useDispatch, useSelector } from "react-redux";
+import { closeTaskDrawer, createTask } from "../../Store/Actions/TodoActions";
 
 // task = {
 //   title: "task 1",
@@ -17,27 +21,48 @@ import { Slide } from "@mui/material";
 //   assignee: "ammar",
 // };
 const SideBAR = (props) => {
-  const { data, updateTodo, open, setOpen } = props;
+  const { data } = props;
+  const dispatch = useDispatch();
+
+  const taskDrawer = useSelector((state) => state.taskDrawer);
+
+  const { open } = taskDrawer;
   const [task, setTask] = useState({});
+  const initialValues = {
+    title: "",
+    Start_Date: "",
+    End_Date: "",
+    priority: "",
+    status: "",
+    assignee: "",
+  };
 
-  const newData = [...data, task];
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: validationSchema,
+    onSubmit: (values, { resetForm }) => {
+      console.log("Submitted Form Values:", values);
 
+      const newData = { ...data, ...values };
+      createTask(newData, dispatch);
+
+      resetForm();
+      handleClose();
+    },
+  });
+
+  const handleClose = () => {
+    closeTaskDrawer(dispatch);
+  };
   const handleSave = () => {
-    if (task.title && task.title.trim() !== "") {
-      updateTodo(newData);
-    } else {
-      alert("Title is required");
-    }
+    formik.handleSubmit();
   };
 
   return open ? (
     <Drawer
       open={open}
       anchor="left"
-      onClose={() => {
-        console.log("closing");
-        setOpen(false);
-      }}
+      onClose={handleClose}
       variant="temporary"
       TransitionComponent={Slide}
       transitionDuration={3000}
@@ -61,6 +86,8 @@ const SideBAR = (props) => {
       }}
     >
       <Box
+        component="form"
+        onSubmit={formik.onSubmit}
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -75,17 +102,18 @@ const SideBAR = (props) => {
         <Title
           task={task}
           setTask={setTask}
+          formik={formik}
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         />
-        <StartDate task={task} setTask={setTask} />
-        <EndDate task={task} setTask={setTask} />
-        <Status task={task} setTask={setTask} />
-        <Priority task={task} setTask={setTask} />
-        <Assignee task={task} setTask={setTask} />
+        <StartDate formik={formik} />
+        <EndDate task={task} setTask={setTask} formik={formik} />
+        <Status task={task} setTask={setTask} formik={formik} />
+        <Priority task={task} setTask={setTask} formik={formik} />
+        <Assignee task={task} setTask={setTask} formik={formik} />
         <Button
           onClick={handleSave}
           sx={{

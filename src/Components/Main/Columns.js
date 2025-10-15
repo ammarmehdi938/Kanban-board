@@ -2,10 +2,15 @@ import { Box, Button, Divider, Stack } from "@mui/material";
 import TaskCard from "./TaskCard";
 import { useState } from "react";
 import AddColumn from "./addColumn";
+import { useSelector } from "react-redux";
 
 const Columns = (props) => {
-  const { columns, data, updateTodo, setColumns } = props;
+  const { columns, updateTodo, setColumns } = props;
+
+  const tasks = useSelector((state) => state.tasks);
   const [newColumn, setNewColumn] = useState({
+    label: "",
+    color: "" || "#ffffff",
     isInitial: false,
     isFinal: false,
   });
@@ -25,7 +30,7 @@ const Columns = (props) => {
       }}
     >
       {columns.map((item) => {
-        const columnData = data.filter(
+        const columnData = tasks.filter(
           (dataItem) => dataItem.status === item.key
         );
         return (
@@ -41,8 +46,6 @@ const Columns = (props) => {
               transition: "transform 0.3s ease , box-shadow 0.3s ease",
               minWidth: "250px",
               overflowY: "auto",
-              // paddingBottom: "10px",
-              // marginBottom: "10px",
 
               "&:hover": {
                 transform: "translateY(-4px)",
@@ -97,7 +100,7 @@ const Columns = (props) => {
                   return (
                     <Box>
                       <TaskCard
-                        data={data}
+                        data={tasks}
                         item={item}
                         updateTodo={updateTodo}
                       />
@@ -129,32 +132,11 @@ const Columns = (props) => {
           </Box>
         );
       })}
-      <Box
-        sx={{
-          backgroundColor: "#1B2635",
-          border: "2px dashed #ffffff33",
-          width: "250px",
-          height: "100%",
-          // marginBottom: "10px",
-          // paddingBottom: "10px",
-          borderRadius: "16px",
-          cursor: "pointer",
-          "&:hover": {
-            borderColor: "#1d4ed8",
-            // backgroundColor: "#1b263599",
-            // boxShadow: "0 15px 35px #0000004d",
-            transform: "translateZ(4px)",
-            boxShadow: `0 15px 50px rgba(0, 0, 0, 0.4),
-                    0 0 0 1px #255ae21a`,
-          },
-        }}
-      >
-        <AddColumn
-          addColumn={setColumns}
-          newColumn={newColumn}
-          setNewColumn={setNewColumn}
-        />
-      </Box>
+      <AddColumn
+        addColumn={setColumns}
+        newColumn={newColumn}
+        setNewColumn={setNewColumn}
+      />
     </Box>
   );
 };

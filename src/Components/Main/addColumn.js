@@ -1,59 +1,25 @@
-import { Box, Button, Checkbox, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  ClickAwayListener,
+  colors,
+  Stack,
+} from "@mui/material";
 import { useState } from "react";
 import CheckBoxes from "./CheckBoxes";
 import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import { MuiColorInput } from "mui-color-input";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { Title } from "@mui/icons-material";
+import { useFormik } from "formik";
+import { InputValidationSchema } from "../../Schema/Validation";
+import StatusForm from "./statusForm";
+import Increment from "./Counter";
+import { Co2Sharp } from "@mui/icons-material";
 
 const AddColumn = (props) => {
   const { addColumn, newColumn, setNewColumn } = props;
   const [addTask, setAddTask] = useState(false);
-
-  const CustomTextField = styled(TextField)(({ theme }) => ({
-    input: {
-      color: "white",
-    },
-    backgroundColor: "#233044",
-    border: "2px solid #233044",
-    borderRadius: "20px",
-    textDecoration: "none",
-
-    "&:hover": {
-      borderColor: "#19bb84",
-      boxShadow: "0 0 14px -4px #19bb84",
-      InputLabelProps: { color: "" },
-    },
-    "&:hover label": {
-      color: "#19bb84",
-    },
-  }));
-
-  const CustomColorInput = styled(MuiColorInput)(({ theme }) => ({
-    input: {
-      color: "white",
-    },
-    backgroundColor: "#233044",
-    border: "2px solid #233044",
-    borderRadius: "20px",
-    textDecoration: "none",
-
-    "&:hover": {
-      borderColor: "#19bb84",
-      boxShadow: "0 0 14px -4px #19bb84",
-    },
-    "& label": {
-      color: "#ffffff",
-    },
-    "&:hover label": {
-      color: "#19bb84",
-    },
-
-    "& .MuiInputBase-root": {
-      color: "white",
-    },
-  }));
 
   const handleAddTask = () => {
     setAddTask(true);
@@ -62,145 +28,65 @@ const AddColumn = (props) => {
     setAddTask(false);
   };
 
-  const handleUpdateColumn = (key, value) => {
-    setNewColumn({ ...newColumn, [key]: value, isNew: true });
-  };
-
-  // Function to handle the creation of a new task
-  const handleCreateTask = () => {
-    {
-      newColumn.label
-        ? addColumn((prev) => [...prev, newColumn])
-        : alert("Please enter a title");
-    }
+  const createStatus = (data) => {
+    addColumn((prev) => [...prev, { ...data, isNew: true, label: data.title }]);
+    handleClickAway();
   };
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Box
         sx={{
-          width: "100%",
+          backgroundColor: "#1B2635",
+          border: "2px dashed #ffffff33",
+          width: "250px",
           minWidth: "250px",
           height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: addTask ? "start" : "center",
-          padding: 2,
+          p: 2,
           boxSizing: "border-box",
+          // marginBottom: "10px",
+          // paddingBottom: "10px",
+          borderRadius: "16px",
+          cursor: "pointer",
+          "&:hover": {
+            borderColor: "#1d4ed8",
+            // backgroundColor: "#1b263599",
+            // boxShadow: "0 15px 35px #0000004d",
+            transform: "translateZ(4px)",
+            boxShadow: `0 15px 50px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px #255ae21a`,
+          },
         }}
       >
+        <Increment />
         {!addTask ? (
-          <Box onClick={handleAddTask}>
-            {/* sx={{ color: "#ffffff", fontSize: "200px" }} */}
+          <Box
+            onClick={handleAddTask}
+            sx={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <Box
               sx={{
                 height: "50px",
                 width: "50px",
                 borderRadius: "100%",
+                fontSize: "50px",
                 display: "flex",
+                flex: 1,
                 justifyContent: "center",
                 alignItems: "center",
-                fontSize: "50px",
               }}
             >
               +
             </Box>
           </Box>
-        ) : null}
-
-        {addTask ? (
-          <Box
-            sx={{
-              fontSize: "32px",
-              color: "#19bb84",
-              cursor: "pointer",
-              userSelect: "none",
-            }}
-          >
-            {" "}
-            <CustomTextField
-              label="Title"
-              id="filled-basic"
-              // onChange={(e) => handleTitle(e)}
-              value={newColumn.label ?? ""}
-              onChange={(e) => handleUpdateColumn("label", e.target.value)}
-              autoFocus
-              InputLabelProps={{
-                sx: {
-                  color: "#ffffff",
-                  "&.Mui-focused": {
-                    color: "#19bb84",
-                    "&:hover": { color: "#19bb84" },
-                  },
-                },
-              }}
-              variant="filled"
-              InputProps={{
-                disableUnderline: "true",
-              }}
-            />
-            <CustomColorInput
-              value={newColumn.color ?? ""}
-              format="hex"
-              onChange={(color) => handleUpdateColumn("color", color)}
-              label="Color"
-              variant="filled"
-              InputProps={{ disableUnderline: true }}
-              sx={{
-                mt: 2,
-                width: "100%",
-
-                "& .MuiFilledInput-root": {
-                  backgroundColor: "#233044",
-                  border: "2px solid #233044",
-                  borderRadius: "20px",
-                  color: "#ffffff",
-                  overflow: "hidden",
-                },
-
-                "& .MuiFilledInput-root:before": {
-                  borderBottom: "none",
-                },
-                "& .MuiFilledInput-root:after": {
-                  borderBottom: "none",
-                },
-
-                "& .MuiFilledInput-root:hover": {
-                  borderColor: "#19bb84",
-                  boxShadow: "0 0 14px -4px #19bb84",
-                },
-
-                "& .MuiInputLabel-root": {
-                  color: "#ffffff",
-                },
-                "& .MuiInputLabel-root.Mui-focused": {
-                  color: "#19bb84",
-                },
-              }}
-            />
-            <CheckBoxes newColumn={newColumn} setNewColumn={setNewColumn} />
-            <Button
-              onClick={handleCreateTask}
-              sx={{
-                backgroundColor: "#233044",
-                borderRadius: "20px",
-                height: "40px",
-                width: "226px",
-                mt: 2,
-                color: "#ffffff",
-
-                "&:hover": {
-                  border: "2px solid #19bb84",
-                  color: "#19bb84",
-                  boxShadow: "0 0 14px -4px #19bb84",
-                },
-              }}
-            >
-              Create Task
-            </Button>
-          </Box>
-        ) : null}
+        ) : (
+          <StatusForm createStatus={createStatus} />
+        )}
       </Box>
     </ClickAwayListener>
   );

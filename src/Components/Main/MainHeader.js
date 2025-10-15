@@ -1,7 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import MainContainerStyle from "./styles";
 import { styled, createTheme, ThemeProvider, margin } from "@mui/system";
+import { useSelector } from "react-redux";
 const MainHeader = () => {
+  const count = useSelector((state) => state.count);
   return (
     <Box
       sx={{
@@ -14,6 +16,7 @@ const MainHeader = () => {
       <Typography sx={{ color: "#ffffff", fontSize: "15px", opacity: "0.6 " }}>
         Feb 4
       </Typography>
+      <h1>Counter: {count}</h1>
       <Typography
         style={{ color: "#ffffff", fontSize: "40px", fontWeight: "bolder" }}
       >
