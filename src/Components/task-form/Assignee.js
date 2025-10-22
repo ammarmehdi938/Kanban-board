@@ -3,28 +3,28 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { BorderColor } from "@mui/icons-material";
 import { Box } from "@mui/material";
-import { STATUS } from "./Utils";
-const Status = (props) => {
+import { ASSIGNEE } from "../../pages/pages/utils/utils";
+
+const Assignee = (props) => {
   const { formik } = props;
-  // const { status } = task;
+  // const { assignee } = task;
+
   // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  //   setTask({ ...task, status: e.target.value });
+  //   setTask({ ...task, assignee: e.target.value });
   // };
 
   return (
     <div>
-      <Box>
+      <Box sx={{}}>
         <FormControl variant="standard"></FormControl>
         <FormControl
           variant="filled"
           sx={{
-            width: "250px",
             mt: "20px",
+            width: "250px",
             "&:hover .MuiInputLabel-root": {
-              color: "#19ab57",
+              color: "#19bb84",
             },
           }}
         >
@@ -33,36 +33,47 @@ const Status = (props) => {
             sx={{
               "&.MuiInputLabel-root": {
                 color: "#ffffff",
+                "&:hover": {
+                  color: "#19bb84",
+                },
               },
+
               "&.MuiInputLabel-root.Mui-focused": {
-                color: "#19ab57  ", // Label color when focused
+                color: "#19bb84",
               },
             }}
           >
-            Status
+            Assignee
           </InputLabel>
           <Select
             labelId="demo-simple-select-filled-label"
             id="demo-simple-select-filled"
             inputProps={{ "aria-label": "Without underline" }}
             disableUnderline
-            name="status"
+            name="assignee"
             value={formik.value}
             onChange={formik.handleChange}
+            MenuProps={{
+              sx: {
+                "&& .Mui-selected": {
+                  background: "#ffffff",
+                },
+              },
+            }}
             sx={{
               border: "2px solid #233044 ",
-              textAlign: "center",
+              // width: "200%",
               borderRadius: "20px",
               backgroundColor: "#233044",
               color: "#ffffff",
               "&:hover": {
                 backgroundColor: "#233044",
-                borderColor: "#19ab57",
+                borderColor: "#19bb84",
                 boxShadow: "0 0 14px -4px #19bb84",
               },
             }}
           >
-            {STATUS.map((item) => {
+            {ASSIGNEE.map((item) => {
               return (
                 <MenuItem value={item.key} sx={{ background: item.color }}>
                   {item.label}
@@ -76,4 +87,4 @@ const Status = (props) => {
   );
 };
 
-export default Status;
+export default Assignee;

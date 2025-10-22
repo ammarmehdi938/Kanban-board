@@ -5,6 +5,9 @@ import {
   DELETE_TASK,
   OPEN_TASK_DRAWER,
   CLOSE_TASK_DRAWER,
+  ADD_STATUS,
+  DELETE_STATUS,
+  UPDATE_STATUS,
 } from "../Types";
 // const dispatch = useDispatch();
 
@@ -18,78 +21,102 @@ const incrementAction = () => {
 const openTaskDrawerAction = (data) => {
   return {
     type: OPEN_TASK_DRAWER,
-    paload: data,
+    payload: data,
   };
 };
 
 const closeTaskDrawerAction = () => {
   return {
     type: CLOSE_TASK_DRAWER,
-    paload: null,
+    payload: null,
   };
 };
 
 const createTaskAction = (data) => {
   return {
     type: CREATE_TASK,
-    paload: data,
+    payload: data,
   };
 };
 const updateTaskAction = (data) => {
   return {
     type: UPDATE_TASK,
-    paload: data,
+    payload: data,
   };
 };
 const deleteTaskAction = (id) => {
   return {
     type: DELETE_TASK,
-    paload: id,
+    payload: id,
+  };
+};
+
+const deleteStatusAction = (statusId) => {
+  return {
+    type: DELETE_STATUS,
+    payload: statusId,
   };
 };
 
 export const increment = (
   data,
-  dispacthFn,
+  dispatchFn,
   success = () => {},
   failure = () => {}
 ) => {
-  dispacthFn(incrementAction());
+  dispatchFn(incrementAction());
   // api call
   // succ
   // fail
 };
 
-export const openTaskDrawer = (data = {}, dispacthFn) => {
-  dispacthFn(openTaskDrawerAction(data));
+export const openTaskDrawer = (data = {}, dispatchFn) => {
+  dispatchFn(openTaskDrawerAction(data));
 };
 
-export const closeTaskDrawer = (dispacthFn) => {
-  dispacthFn(closeTaskDrawerAction());
+export const closeTaskDrawer = (dispatchFn) => {
+  dispatchFn(closeTaskDrawerAction());
 };
 
 export const createTask = (
   data,
-  dispacthFn,
+  dispatchFn,
   success = () => {},
   failure = () => {}
 ) => {
-  dispacthFn(createTaskAction(data));
+  dispatchFn(createTaskAction(data));
 };
 
 export const updateTask = (
   data,
-  dispacthFn,
+  dispatchFn,
   success = () => {},
   failure = () => {}
 ) => {
-  dispacthFn(updateTaskAction(data));
+  dispatchFn(updateTaskAction(data));
 };
 export const deleteTask = (
   id,
-  dispacthFn,
+  dispatchFn,
   success = () => {},
   failure = () => {}
 ) => {
-  dispacthFn(deleteTaskAction(id));
+  dispatchFn(deleteTaskAction(id));
+};
+
+// Status action
+const AddStatusAction = (data) => {
+  return {
+    type: ADD_STATUS,
+    payload: data,
+  };
+};
+
+// Add Status Dispatcher Function
+export const addStatus = (data, dispatchFn) => {
+  dispatchFn(AddStatusAction(data));
+};
+
+export const deleteStatus = (statusId, dispatchFn) => {
+  dispatchFn(deleteStatusAction(statusId));
 };

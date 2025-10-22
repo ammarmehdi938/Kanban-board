@@ -1,7 +1,6 @@
 import Title from "./Title";
 import StartDate from "./StartDate";
 import EndDate from "./EndDate";
-import Status from "./Status";
 import Priority from "./Priority";
 import Assignee from "./Assignee";
 import { useState } from "react";
@@ -11,17 +10,11 @@ import { useFormik } from "formik";
 import { validationSchema } from "../../Schema/Validation";
 import { useDispatch, useSelector } from "react-redux";
 import { closeTaskDrawer, createTask } from "../../Store/Actions/TodoActions";
+import Status from "./Status";
 
-// task = {
-//   title: "task 1",
-//   status: "In progress",
-//   priority: "High",
-//   startDate: "1st aug, 2025",
-//   endDate: "31st aug, 2025",
-//   assignee: "ammar",
-// };
-const SideBAR = (props) => {
+const TaskForm = (props) => {
   const { data } = props;
+
   const dispatch = useDispatch();
 
   const taskDrawer = useSelector((state) => state.taskDrawer);
@@ -35,6 +28,7 @@ const SideBAR = (props) => {
     priority: "",
     status: "",
     assignee: "",
+    // id: "",
   };
 
   const formik = useFormik({
@@ -100,8 +94,6 @@ const SideBAR = (props) => {
         }}
       >
         <Title
-          task={task}
-          setTask={setTask}
           formik={formik}
           sx={{
             display: "flex",
@@ -110,10 +102,10 @@ const SideBAR = (props) => {
           }}
         />
         <StartDate formik={formik} />
-        <EndDate task={task} setTask={setTask} formik={formik} />
-        <Status task={task} setTask={setTask} formik={formik} />
-        <Priority task={task} setTask={setTask} formik={formik} />
-        <Assignee task={task} setTask={setTask} formik={formik} />
+        <EndDate formik={formik} />
+        <Status formik={formik} />
+        <Priority formik={formik} />
+        <Assignee formik={formik} />
         <Button
           onClick={handleSave}
           sx={{
@@ -137,4 +129,4 @@ const SideBAR = (props) => {
   ) : null;
 };
 
-export default SideBAR;
+export default TaskForm;

@@ -7,18 +7,11 @@ import {
   Stack,
 } from "@mui/material";
 import { useState } from "react";
-import CheckBoxes from "./CheckBoxes";
-import { styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import { MuiColorInput } from "mui-color-input";
-import { useFormik } from "formik";
-import { InputValidationSchema } from "../../Schema/Validation";
+
 import StatusForm from "./statusForm";
 import Increment from "./Counter";
-import { Co2Sharp } from "@mui/icons-material";
 
-const AddColumn = (props) => {
-  const { addColumn, newColumn, setNewColumn } = props;
+const AddColumn = () => {
   const [addTask, setAddTask] = useState(false);
 
   const handleAddTask = () => {
@@ -29,7 +22,6 @@ const AddColumn = (props) => {
   };
 
   const createStatus = (data) => {
-    addColumn((prev) => [...prev, { ...data, isNew: true, label: data.title }]);
     handleClickAway();
   };
 
@@ -50,8 +42,6 @@ const AddColumn = (props) => {
           cursor: "pointer",
           "&:hover": {
             borderColor: "#1d4ed8",
-            // backgroundColor: "#1b263599",
-            // boxShadow: "0 15px 35px #0000004d",
             transform: "translateZ(4px)",
             boxShadow: `0 15px 50px rgba(0, 0, 0, 0.4),
                     0 0 0 1px #255ae21a`,

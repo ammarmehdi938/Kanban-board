@@ -1,11 +1,11 @@
 import { Box, Button, Checkbox, colors, Stack } from "@mui/material";
 
 import CheckBoxes from "./CheckBoxes";
-// import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useFormik } from "formik";
-// import InputValidationSchema from "../../Schema/Validation";
 import { InputValidationSchema } from "../../Schema/Validation";
 import { CustomColorInput, CustomTextField } from "./Styled";
+import { useDispatch } from "react-redux";
+import { addStatus } from "../../Store/Actions/TodoActions";
 
 const initialValues = {
   title: "",
@@ -14,13 +14,15 @@ const initialValues = {
   isFinal: false,
 };
 const StatusForm = (props) => {
-  const { createStatus } = props;
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: InputValidationSchema,
     onSubmit: (values) => {
-      createStatus(values);
+      addStatus(values, dispatch, () => {
+        console.log("Column added successfully");
+      });
     },
   });
   const {

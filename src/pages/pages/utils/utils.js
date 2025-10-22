@@ -1,13 +1,9 @@
-export const STATUS = [
-  { key: "todo", label: "Todo", id: 1, color: "#0000ff" },
-  { key: "inprogress", label: "In-Progress", id: 2, color: "#ffff00" },
-  { key: "ineview", label: "In Review", id: 3, color: "#ffa500" },
-  { key: "completed", label: "Completed", id: 4, color: "#028f74" },
-  // { key: "yet to do", label: "Yet to do", id: 5, color: "black" },
-  // { key: "yet to do", label: "Yet to do", id: 6, color: "black" },
-  // { key: "yet to do", label: "Yet to do", id: 7, color: "black" },
-  // { key: "yet to do", label: "Yet to do", id: 8, color: "black" }
-];
+export const STATUS = {
+  1: { key: "todo", label: "Todo", id: 1, color: "#0000ff" },
+  2: { key: "inprogress", label: "In-Progress", id: 2, color: "#ffff00" },
+  3: { key: "inreview", label: "In Review", id: 3, color: "#ffa500" },
+  4: { key: "completed", label: "Completed", id: 4, color: "#028f74" },
+};
 
 export const PRIORITY = [
   { key: "high", label: "High", id: 4, color: "red" },
