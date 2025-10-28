@@ -1,10 +1,12 @@
 import {
-  CLOSE_TASK_DRAWER,
-  CREATE_TASK,
-  DELETE_TASK,
-  INCREMENT,
   OPEN_TASK_DRAWER,
+  CLOSE_TASK_DRAWER,
+  INCREMENT,
   ADD_STATUS,
+  UPDATE_TASK,
+  DELETE_TASK,
+  CREATE_TASK,
+  UPDATE_STATUS,
   DELETE_STATUS,
 } from "../Types";
 
@@ -60,45 +62,51 @@ const counterReducer = (state = initialState, action) => {
         tasks: [...state.tasks, createdTask],
       };
     }
-    // case UPDATE_TASK: {
-    //   const allTasks = state.tasks;
-
-    //   const { id, ...data } = action.paload.data;
-    //   const updatedTasksList = allTasks.map((item) => {
-    //     if (item.id === id) {
-    //       return { ...item, data };
-    //     }
-    //     return item;
-    //   });
-    //   // const tasks =
-    //   return {
-    //     ...state,
-    //     tasls: [...updatedTasksList],
-    //   };
-    // }
     case DELETE_TASK: {
-      const allTasks = state.tasks;
-
-      const id = action.payload.id;
-      // const updatedTasksList = allTasks.filter((item) => {
-      //   if (item.id === id) {
-      //     return;
-      //   }
-      const updatedTasksList = allTasks.filter((item) => item.id !== id);
-
-      // const tasks =
-      return {
-        ...state,
-        tasks: [...updatedTasksList],
-      };
+      const id = action.payload;
+      const updatedTasksList = state.tasks.filter((task) => task.id !== id);
+      return { ...state, tasks: updatedTasksList };
     }
     default:
       return state;
+
+    // case UPDATE_TASK: {
+    //   const updateTask = action.payload;
+    //   const updatedTasks = state.tasks.map(
+    //     (task) =>
+    //       (task.id = updatedTasks.id ? { ...task, ...updateTask } : task)
+    //   );
+    //   return { ...state, tasks: updatedTasks };
+    // }
+    case UPDATE_TASK: {
+      const updatedTask = action.payload;
+
+      const updatedTasks = state.tasks.map((task) =>
+        task.id === updatedTask.id ? { ...task, ...updatedTask } : task
+      );
+
+      return { ...state, tasks: updatedTasks };
+    }
+    case UPDATE_STATUS: {
+      const updatedStatus = action.payload;
+
+      const { id } = updatedStatus;
+      return {
+        ...state,
+        statuses: {
+          ...state.statuses.byId,
+          byId: {
+            ...state.statuses.byId[id],
+            ...updatedStatus,
+          },
+        },
+      };
+    }
     case ADD_STATUS: {
       const status = action.payload;
 
       const newId =
-        status.id || status.title?.toLowerCase().replace(/\s+/g, ""); // fallback id
+        status.id || status.title?.toLowerCase().replace(/\s+/g, "");
       return {
         ...state,
         statuses: {
@@ -117,11 +125,9 @@ const counterReducer = (state = initialState, action) => {
     case DELETE_STATUS: {
       const statusId = action.payload;
 
-      // Remove the status column
       const { [statusId]: removedStatus, ...remainingStatuses } =
         state.statuses.byId;
 
-      // Remove all tasks with that status
       const filteredTasks = state.tasks.filter(
         (task) => task.status !== statusId
       );

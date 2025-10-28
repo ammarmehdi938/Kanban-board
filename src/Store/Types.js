@@ -1,5 +1,3 @@
-import { Delete } from "@mui/icons-material";
-
 export const INCREMENT = "INCREMENT";
 export const ADD_COLUMN = "ADD_COLUMN";
 export const OPEN_TASK_DRAWER = "OPEN_TASK_DRAWER";

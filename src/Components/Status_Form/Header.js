@@ -1,15 +1,7 @@
-import {
-  Drawer,
-  ListItem,
-  ListItemText,
-  List,
-  Button,
-  Box,
-} from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { openTaskDrawer } from "../../Store/Actions/TodoActions";
 import { useDispatch } from "react-redux";
 const Header = (props) => {
-  const { open } = props;
   const dispatch = useDispatch();
   const handleSideber = () => {
     openTaskDrawer(null, dispatch);

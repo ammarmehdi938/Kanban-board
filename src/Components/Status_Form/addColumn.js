@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Checkbox,
-  ClickAwayListener,
-  colors,
-  Stack,
-} from "@mui/material";
+import { Box, Button, Checkbox, ClickAwayListener } from "@mui/material";
 import { useState } from "react";
 
 import StatusForm from "./statusForm";

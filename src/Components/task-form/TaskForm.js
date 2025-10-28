@@ -9,8 +9,13 @@ import { Slide } from "@mui/material";
 import { useFormik } from "formik";
 import { validationSchema } from "../../Schema/Validation";
 import { useDispatch, useSelector } from "react-redux";
-import { closeTaskDrawer, createTask } from "../../Store/Actions/TodoActions";
+import {
+  closeTaskDrawer,
+  createTask,
+  updateTask,
+} from "../../Store/Actions/TodoActions";
 import Status from "./Status";
+import { Edit } from "@mui/icons-material";
 
 const TaskForm = (props) => {
   const { data } = props;
@@ -18,27 +23,42 @@ const TaskForm = (props) => {
   const dispatch = useDispatch();
 
   const taskDrawer = useSelector((state) => state.taskDrawer);
+  const tasks = useSelector((state) => state.tasks);
+  const { id: taskId, mode } = taskDrawer || {};
+  // const taskData =
+  //   mode === "edit" && taskId ? tasks.find((t) => t.id === taskId) : {};
 
   const { open } = taskDrawer;
-  const [task, setTask] = useState({});
-  const initialValues = {
-    title: "",
-    Start_Date: "",
-    End_Date: "",
-    priority: "",
-    status: "",
-    assignee: "",
-    // id: "",
-  };
+  const taskData =
+    mode === "edit" && taskId ? tasks.find((t) => t.id === taskId) || {} : {};
+  // const initialValues = {
+  //   title: "",
+  //   Start_Date: "",
+  //   End_Date: "",
+  //   priority: "",
+  //   status: "",
+  //   assignee: "",
+  // };
 
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: {
+      title: taskData?.title || "",
+      Start_Date: taskData?.Start_Date || "",
+      End_Date: taskData?.End_Date || "",
+      priority: taskData?.priority || "",
+      status: taskData?.status || "",
+      assignee: taskData?.assignee || "",
+    },
+    enableReinitialize: true,
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
-      console.log("Submitted Form Values:", values);
+      const newData = { ...taskData, ...values };
 
-      const newData = { ...data, ...values };
-      createTask(newData, dispatch);
+      if (mode === "edit") {
+        updateTask(newData, dispatch);
+      } else {
+        createTask(newData, dispatch);
+      }
 
       resetForm();
       handleClose();

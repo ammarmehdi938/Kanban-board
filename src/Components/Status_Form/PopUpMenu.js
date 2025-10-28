@@ -2,13 +2,13 @@ import { MoreVert } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
 import { Box, Menu, MenuItem } from "@mui/material";
-
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../Store/Actions/TodoActions";
+import { openTaskDrawer } from "../../Store/Actions/TodoActions";
 
 const PopUpMenu = ({ taskId }) => {
-  //   const [taskId] = props;
+  // const handleDelete = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
@@ -19,9 +19,16 @@ const PopUpMenu = ({ taskId }) => {
     setAnchorEl(null);
   };
   const handleDeleteTask = () => {
-    deleteTask({ id: taskId }, dispatch);
+    console.log("Deleting task with id:", taskId);
+    deleteTask(taskId, dispatch);
     handleCloseMenu();
   };
+  const handleUpdateTask = () => {
+    openTaskDrawer({ id: taskId, mode: "edit" }, dispatch);
+
+    handleCloseMenu();
+  };
+
   return (
     <Box>
       <MoreVert onClick={handleClick} />
@@ -41,7 +48,7 @@ const PopUpMenu = ({ taskId }) => {
             <DeleteIcon />
             DeleteTask
           </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>
+          <MenuItem onClick={handleUpdateTask}>
             <UpdateIcon />
             updateTask
           </MenuItem>

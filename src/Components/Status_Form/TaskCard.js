@@ -34,6 +34,10 @@ const TaskCard = (props) => {
   //   updateTodo(filteredData);
   // };
 
+  //  const handleDelete = () => {
+  //   console.log("Deleting task id:", item.id); // ✅ Debug check
+  //   deleteTask(item.id, dispatch);
+  // };
   return (
     <Box
       sx={{

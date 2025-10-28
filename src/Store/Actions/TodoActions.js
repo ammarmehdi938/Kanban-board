@@ -1,18 +1,16 @@
 import {
+  OPEN_TASK_DRAWER,
+  CLOSE_TASK_DRAWER,
   INCREMENT,
+  ADD_STATUS,
+  UPDATE_STATUS,
+  DELETE_STATUS,
   CREATE_TASK,
   UPDATE_TASK,
   DELETE_TASK,
-  OPEN_TASK_DRAWER,
-  CLOSE_TASK_DRAWER,
-  ADD_STATUS,
-  DELETE_STATUS,
-  UPDATE_STATUS,
 } from "../Types";
-// const dispatch = useDispatch();
 
 const incrementAction = () => {
-  //this is dispatcher fun
   return {
     type: INCREMENT,
   };
@@ -44,6 +42,12 @@ const updateTaskAction = (data) => {
     payload: data,
   };
 };
+const updateStatusAction = (data) => {
+  return {
+    type: UPDATE_STATUS,
+    payload: data,
+  };
+};
 const deleteTaskAction = (id) => {
   return {
     type: DELETE_TASK,
@@ -65,9 +69,6 @@ export const increment = (
   failure = () => {}
 ) => {
   dispatchFn(incrementAction());
-  // api call
-  // succ
-  // fail
 };
 
 export const openTaskDrawer = (data = {}, dispatchFn) => {
@@ -84,7 +85,16 @@ export const createTask = (
   success = () => {},
   failure = () => {}
 ) => {
-  dispatchFn(createTaskAction(data));
+  const randomId = () => Math.random().toString(36).substring(2, 10);
+  const taskWithId = {
+    ...data,
+    id: data.id || randomId(),
+  };
+
+  dispatchFn({
+    type: CREATE_TASK,
+    payload: taskWithId,
+  });
 };
 
 export const updateTask = (
@@ -95,6 +105,9 @@ export const updateTask = (
 ) => {
   dispatchFn(updateTaskAction(data));
 };
+export const updateStatus = (data, dispatchFn) => {
+  dispatchFn(updateStatusAction(data));
+};
 export const deleteTask = (
   id,
   dispatchFn,
@@ -104,7 +117,6 @@ export const deleteTask = (
   dispatchFn(deleteTaskAction(id));
 };
 
-// Status action
 const AddStatusAction = (data) => {
   return {
     type: ADD_STATUS,
@@ -112,7 +124,6 @@ const AddStatusAction = (data) => {
   };
 };
 
-// Add Status Dispatcher Function
 export const addStatus = (data, dispatchFn) => {
   dispatchFn(AddStatusAction(data));
 };
