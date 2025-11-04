@@ -1,9 +1,36 @@
 import { Box, Typography } from "@mui/material";
-import MainContainerStyle from "./styles";
-import { styled, createTheme, ThemeProvider, margin } from "@mui/system";
 import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+
 const MainHeader = () => {
-  const count = useSelector((state) => state.count);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      setTime(`${hours}:${minutes}`);
+    };
+  });
+  const options = { year: "numeric", month: "short", day: "numeric" };
+  const formattedDate = currentTime.toLocaleDateString("en-US", options);
+  const now = new Date();
+  const hour = now.getHours();
+  console.log(hour);
+
+  let greeting;
+
+  if (hour >= 5 && hour <= 12) {
+    greeting = "Good Morinng";
+  } else if (hour > 12 && hour <= 16) {
+    greeting = "Good AfterNoon";
+  } else if (hour > 16 && hour <= 16) {
+    greeting = "Good Evening";
+  } else {
+    greeting = "Good Night";
+  }
+
   return (
     <Box
       sx={{
@@ -14,13 +41,15 @@ const MainHeader = () => {
       }}
     >
       <Typography sx={{ color: "#ffffff", fontSize: "15px", opacity: "0.6 " }}>
-        Feb 4
+        {/* <p>{currentDate}</p> */}
+        {formattedDate}
       </Typography>
-      <h1>Counter: {count}</h1>
+
       <Typography
         style={{ color: "#ffffff", fontSize: "40px", fontWeight: "bolder" }}
       >
-        Good Afternoon
+        {" "}
+        {greeting}
       </Typography>
       <Typography
         sx={{

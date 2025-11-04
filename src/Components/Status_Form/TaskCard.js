@@ -3,41 +3,9 @@ import { Avatar } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const TaskCard = (props) => {
-  const { data, item, updateTodo } = props;
-  const { isEditing, setIsEditing } = props;
+  const { item } = props;
   const { title, startDate, endDate, priority, assignee } = item || {};
 
-  // const handleDelete = (id) => {
-  //   const filteredData = data.filter((i) => i.id !== id);
-  //   updateTodo(filteredData);
-  // };
-
-  // const handleUpdate = (e) => {
-  //   const isChecked = e.target.checked;
-  //   // const updatedItem = { ...item, isDone: isChecked };
-
-  //   const newArray = data.map((i) => {
-  //     if (i.id === item.id) {
-  //       return { ...item, isDone: isChecked };
-  //     } else return i;
-  //   });
-
-  //   updateTodo(newArray);
-  // };
-
-  // const handleDelete = (id) => {
-  //   const filteredData = item.filter((i) => i.id !== id);
-  //   updateTodo(filteredData);
-  // };
-  // const handleDelete = (id) => {
-  //   const filteredData = data.filter((i) => i.id !== id);
-  //   updateTodo(filteredData);
-  // };
-
-  //  const handleDelete = () => {
-  //   console.log("Deleting task id:", item.id); // ✅ Debug check
-  //   deleteTask(item.id, dispatch);
-  // };
   return (
     <Box
       sx={{
@@ -49,7 +17,6 @@ const TaskCard = (props) => {
         border: "#FFFFFF1A",
         cursor: "pointer",
         "&:hover": {
-          // transform: "translateY(-1px);",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.4)",
           backgroundColor: "#ffffff14",
           borderColor: "#ffffff26",
@@ -80,13 +47,6 @@ const TaskCard = (props) => {
             </Avatar>
           ) : null}
         </Stack>
-        {/* <Checkbox
-        type="radio" 
-        checked={item.isDone}
-        icon={<RadioButtonUncheckedIcon />}
-        style={{ marginLeft: "-15px" }}
-        onChange={(e) => handleUpdate(e)}
-      ></Checkbox> */}
         <Stack direction="row" spacing={1} sx={{ marginTop: "10px" }}>
           {startDate || endDate ? (
             <Stack

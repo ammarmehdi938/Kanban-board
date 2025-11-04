@@ -8,6 +8,9 @@ import {
   CREATE_TASK,
   UPDATE_TASK,
   DELETE_TASK,
+  MOVE_TASK,
+  MOVE_UPDATE_TASK,
+  MOVE_STATUS,
 } from "../Types";
 
 const incrementAction = () => {
@@ -61,6 +64,23 @@ const deleteStatusAction = (statusId) => {
     payload: statusId,
   };
 };
+const moveStatusAction = (payload) => ({
+  type: MOVE_STATUS,
+  payload,
+});
+
+const movetaskAction = (data) => {
+  return {
+    type: MOVE_TASK,
+    payload: data,
+  };
+};
+const moveUpdateTaskAction = (data) => {
+  return {
+    type: MOVE_UPDATE_TASK,
+    payload: data,
+  };
+};
 
 export const increment = (
   data,
@@ -98,13 +118,15 @@ export const createTask = (
 };
 
 export const updateTask = (
-  data,
   dispatchFn,
+  data,
   success = () => {},
   failure = () => {}
 ) => {
   dispatchFn(updateTaskAction(data));
 };
+
+export const moveUpdateTask = (data) => moveUpdateTaskAction(data);
 export const updateStatus = (data, dispatchFn) => {
   dispatchFn(updateStatusAction(data));
 };
@@ -130,4 +152,12 @@ export const addStatus = (data, dispatchFn) => {
 
 export const deleteStatus = (statusId, dispatchFn) => {
   dispatchFn(deleteStatusAction(statusId));
+};
+
+export const moveStatus = (data, dispatchFn) => {
+  dispatchFn(moveStatusAction(data));
+};
+
+export const moveTask = (data, dispatchFn) => {
+  dispatchFn(movetaskAction(data));
 };

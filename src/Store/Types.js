@@ -1,10 +1,13 @@
 export const INCREMENT = "INCREMENT";
-export const ADD_COLUMN = "ADD_COLUMN";
 export const OPEN_TASK_DRAWER = "OPEN_TASK_DRAWER";
 export const CLOSE_TASK_DRAWER = "CLOSE_TASK_DRAWER";
 export const CREATE_TASK = "CREATE_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
 export const DELETE_TASK = "DELETE_TASK";
+export const MOVE_TASK = "MOVE_TASK";
+export const MOVE_UPDATE_TASK = "MOVE_UPDATE_TASK";
 export const ADD_STATUS = "ADD_STATUS";
-export const DELETE_STATUS = "DELETE_STATUS";
+export const ADD_COLUMN = "ADD_COLUMN";
 export const UPDATE_STATUS = "UPDATE_STATUS";
+export const DELETE_STATUS = "DELETE_STATUS";
+export const MOVE_STATUS = "MOVE_STATUS";

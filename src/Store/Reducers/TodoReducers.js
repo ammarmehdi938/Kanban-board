@@ -1,3 +1,4 @@
+import { arrayMove } from "@dnd-kit/sortable";
 import {
   OPEN_TASK_DRAWER,
   CLOSE_TASK_DRAWER,
@@ -8,6 +9,9 @@ import {
   CREATE_TASK,
   UPDATE_STATUS,
   DELETE_STATUS,
+  MOVE_TASK,
+  MOVE_UPDATE_TASK,
+  MOVE_STATUS,
 } from "../Types";
 
 const initialState = {
@@ -70,14 +74,6 @@ const counterReducer = (state = initialState, action) => {
     default:
       return state;
 
-    // case UPDATE_TASK: {
-    //   const updateTask = action.payload;
-    //   const updatedTasks = state.tasks.map(
-    //     (task) =>
-    //       (task.id = updatedTasks.id ? { ...task, ...updateTask } : task)
-    //   );
-    //   return { ...state, tasks: updatedTasks };
-    // }
     case UPDATE_TASK: {
       const updatedTask = action.payload;
 
@@ -86,6 +82,35 @@ const counterReducer = (state = initialState, action) => {
       );
 
       return { ...state, tasks: updatedTasks };
+    }
+    case MOVE_UPDATE_TASK: {
+      const moveUpdatedTask = action.payload;
+
+      const moveUpdatedTasks = state.tasks.map((task) =>
+        task.id === moveUpdatedTask.id ? { ...task, ...moveUpdatedTask } : task
+      );
+
+      return { ...state, tasks: moveUpdatedTasks };
+    }
+    case MOVE_STATUS: {
+      const { activeId, overId } = action.payload;
+      // const oldIndex = allIds.indexOf(activeId);
+      // const newIndex = allIds.indexOf(overId);
+      const oldIndex = state.statuses.allIds.indexOf(activeId);
+      const newIndex = state.statuses.allIds.indexOf(overId);
+      if (oldIndex === -1 || newIndex === -1) return state;
+      // const allIds = [...state.statuses.allIds];
+
+      const newOrder = arrayMove(state.statuses.allIds, oldIndex, newIndex); //allIds.splice(oldIndex, 1);
+      // allIds.splice(newIndex, 0, moved);
+
+      return {
+        ...state,
+        statuses: {
+          ...state.statuses,
+          allIds: newOrder,
+        },
+      };
     }
     case UPDATE_STATUS: {
       const updatedStatus = action.payload;
@@ -140,6 +165,17 @@ const counterReducer = (state = initialState, action) => {
         },
         tasks: filteredTasks,
       };
+    }
+    case MOVE_TASK: {
+      const { id, newIndex } = action.payload;
+      const currentIndex = state.tasks.findIndex((item) => item.id === id);
+      if (currentIndex === -1 || newIndex < 0) return state;
+
+      const newItems = [...state.tasks];
+      const newTasks = [...state.tasks];
+      const [movedItem] = newItems.splice(currentIndex, 1);
+      newItems.splice(newIndex, 0, movedItem);
+      return { ...state, tasks: newTasks };
     }
   }
 };

@@ -15,7 +15,6 @@ import {
   updateTask,
 } from "../../Store/Actions/TodoActions";
 import Status from "./Status";
-import { Edit } from "@mui/icons-material";
 
 const TaskForm = (props) => {
   const { data } = props;
@@ -31,14 +30,6 @@ const TaskForm = (props) => {
   const { open } = taskDrawer;
   const taskData =
     mode === "edit" && taskId ? tasks.find((t) => t.id === taskId) || {} : {};
-  // const initialValues = {
-  //   title: "",
-  //   Start_Date: "",
-  //   End_Date: "",
-  //   priority: "",
-  //   status: "",
-  //   assignee: "",
-  // };
 
   const formik = useFormik({
     initialValues: {
@@ -81,7 +72,7 @@ const TaskForm = (props) => {
       TransitionComponent={Slide}
       transitionDuration={3000}
       SlideProps={{
-        timeout: 2000,
+        timeout: 10000,
         direction: "left",
       }}
       ModalProps={{
@@ -101,6 +92,7 @@ const TaskForm = (props) => {
     >
       <Box
         component="form"
+        key={taskId || "new-task"}
         onSubmit={formik.onSubmit}
         sx={{
           display: "flex",
@@ -142,7 +134,7 @@ const TaskForm = (props) => {
             },
           }}
         >
-          Create Task
+          {mode === "edit" ? 'Update Task' : 'Create Task'}
         </Button>
       </Box>
     </Drawer>

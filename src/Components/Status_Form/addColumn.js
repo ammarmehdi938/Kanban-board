@@ -1,8 +1,6 @@
 import { Box, Button, Checkbox, ClickAwayListener } from "@mui/material";
 import { useState } from "react";
-
 import StatusForm from "./statusForm";
-import Increment from "./Counter";
 
 const AddColumn = () => {
   const [addTask, setAddTask] = useState(false);
@@ -26,7 +24,7 @@ const AddColumn = () => {
           border: "2px dashed #ffffff33",
           width: "250px",
           minWidth: "250px",
-          height: "100%",
+          height: "500px",
           p: 2,
           boxSizing: "border-box",
           // marginBottom: "10px",
@@ -41,7 +39,6 @@ const AddColumn = () => {
           },
         }}
       >
-        <Increment />
         {!addTask ? (
           <Box
             onClick={handleAddTask}

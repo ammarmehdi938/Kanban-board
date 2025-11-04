@@ -112,8 +112,6 @@ const StatusForm = (props) => {
           }}
         />
         <CheckBoxes
-          // newColumn={newColumn}
-          // setNewColumn={setNewColumn}
           values={values}
           setFieldValue={setFieldValue}
           onChange={(e) => setFieldValue("isInitial", e.target.checked)}
