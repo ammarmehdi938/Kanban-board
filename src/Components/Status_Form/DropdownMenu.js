@@ -5,10 +5,8 @@ import { Box, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteStatus } from "../../Store/Actions/TodoActions";
-import StatusForm from "./statusForm";
 
 const DropdownMenu = ({ taskId }) => {
-  //   const [taskId] = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
@@ -22,12 +20,26 @@ const DropdownMenu = ({ taskId }) => {
     deleteStatus(taskId, dispatch);
     handleCloseMenu();
   };
-  const handleUpdateColumn = () => {
-    
-  };
+  const handleUpdateColumn = () => {};
   return (
-    <Box>
-      <MoreVert onClick={handleClick} />
+    <Box
+      sx={{
+        cursor: "pointer",
+        position: "relative",
+        zIndex: 1000,
+        pointerEvents: "auto",
+      }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onPointerDown={(e) => e.stopPropagation()}
+    >
+      <MoreVert
+        draggable={false}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClick(e);
+        }}
+        sx={{ draggable: false, cursor: "pointer" }}
+      />
       <Box sx={{ backgroundColor: "#1B2635" }}>
         <Menu
           id="basic-menu"

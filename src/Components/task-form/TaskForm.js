@@ -16,16 +16,14 @@ import {
 } from "../../Store/Actions/TodoActions";
 import Status from "./Status";
 
-const TaskForm = (props) => {
-  const { data } = props;
+const TaskForm = () => {
+  // const { data } = props;
 
   const dispatch = useDispatch();
 
   const taskDrawer = useSelector((state) => state.taskDrawer);
   const tasks = useSelector((state) => state.tasks);
   const { id: taskId, mode } = taskDrawer || {};
-  // const taskData =
-  //   mode === "edit" && taskId ? tasks.find((t) => t.id === taskId) : {};
 
   const { open } = taskDrawer;
   const taskData =
@@ -48,7 +46,7 @@ const TaskForm = (props) => {
       if (mode === "edit") {
         updateTask(newData, dispatch);
       } else {
-        createTask(newData, dispatch);
+        createTask(newData, dispatch);  
       }
 
       resetForm();
@@ -70,11 +68,7 @@ const TaskForm = (props) => {
       onClose={handleClose}
       variant="temporary"
       TransitionComponent={Slide}
-      transitionDuration={3000}
-      SlideProps={{
-        timeout: 10000,
-        direction: "left",
-      }}
+      transitionDuration={1000}
       ModalProps={{
         BackdropProps: {
           sx: {
@@ -92,7 +86,7 @@ const TaskForm = (props) => {
     >
       <Box
         component="form"
-        key={taskId || "new-task"}
+        // key={taskId || "new-task"}
         onSubmit={formik.onSubmit}
         sx={{
           display: "flex",
@@ -134,7 +128,7 @@ const TaskForm = (props) => {
             },
           }}
         >
-          {mode === "edit" ? 'Update Task' : 'Create Task'}
+          {mode === "edit" ? "Update Task" : "Create Task"}
         </Button>
       </Box>
     </Drawer>

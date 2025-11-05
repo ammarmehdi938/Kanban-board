@@ -1,5 +1,4 @@
-import React from "react";
-import { useDraggable, useDroppable, DragOverlay } from "@dnd-kit/core";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { Box } from "@mui/material";
 
 export function Draggable({ id, children }) {
@@ -7,12 +6,9 @@ export function Draggable({ id, children }) {
     id: id,
   });
   const style = {
-    // transform: transform
-    //   ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
-    //   : undefined,
     opacity: isDragging ? 1 : 1,
     cursor: "grab",
-    transition: "opacity 0.2s ease",
+    transition: "opacity 0.2s ease",  
   };
 
   return (

@@ -2,10 +2,9 @@ import { MoreVert } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
 import { Box, Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { useState } from "react"; 
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../Store/Actions/TodoActions";
-// import { Update } from "@mui/icons-material";
 import { openTaskDrawer } from "../../Store/Actions/TodoActions";
 
 const PopUpMenu = ({ taskId }) => {
@@ -30,8 +29,23 @@ const PopUpMenu = ({ taskId }) => {
   };
 
   return (
-    <Box>
-      <MoreVert onClick={handleClick} sx={{ cursor: "pointer" }} />
+    <Box
+      sx={{
+        cursor: "pointer",
+        position: "relative",
+        zIndex: 1000,
+        pointerEvents: "auto",
+      }}
+      onMouseDown={(e) => e.stopPropagation()}
+      onPointerDown={(e) => e.stopPropagation()}
+    >
+      <MoreVert
+        onClick={(e) => {
+          e.stopPropagation(); // prevent drag interference
+          handleClick(e);
+        }}
+        sx={{ cursor: "pointer", zIndex: 9999 }}
+      />
       <Box sx={{ backgroundColor: "#1B2635" }}>
         <Menu
           id="basic-menu"

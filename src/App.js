@@ -11,11 +11,13 @@ import { MOVE_STATUS } from "./Store/Types";
 function App() {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks);
+  const statuses = useSelector((state) => state.statuses);
   const [activeTask, setActiveTask] = useState(null);
 
   const handleDragStart = (event) => {
     const { active } = event;
     const task = tasks.find((t) => t.id === active.id);
+    // if (task) setActiveTask(task)
 
     if (task) {
       setActiveTask(task);
@@ -29,33 +31,49 @@ function App() {
 
     const activeId = active.id;
     const overId = over.id;
-    // setActiveTask(null);
 
-    const task = tasks.find((t) => t.id === activeId);
-    if (!task) return;
-    // const tasks = useSelector((state) => state.tasks);
-    // if (task.status !== overId) {
-    //   const updatedTask = { ...task, status: overId };
-    //   dispatch(moveUpdateTask(updatedTask));
-    if (task.status !== overId) {
-      const updatedTask = { ...task, status: overId };
-      dispatch(moveUpdateTask(updatedTask));
-    } else {
+    const allStatuses = statuses.allIds;
+    if (allStatuses.includes(activeId) && allStatuses.includes(overId)) {
       dispatch({
         type: MOVE_STATUS,
         payload: { activeId, overId },
       });
+      return;
     }
+    const task = tasks.find((t) => t.id === activeId);
+    if (task && task.status !== overId) {
+      const updatedTask = { ...task, status: overId };
+      dispatch(moveUpdateTask(updatedTask));
+    }
+    setActiveTask(null);
+    // const activeId = active.id;
+    // const overId = over.id;
+
+    // const task = tasks.find((t) => t.id === activeId);
+    // if (!task) return;
+    // const tasks = useSelector((state) => state.tasks);
+    // if (task.status !== overId) {
+    //   const updatedTask = { ...task, status: overId };
+    //   dispatch(moveUpdateTask(updatedTask));
+    // if (task.status !== overId) {
+    //   const updatedTask = { ...task, status: overId };
+    //   dispatch(moveUpdateTask(updatedTask));
+    // } else {
+    //   dispatch({
+    //     type: MOVE_STATUS,
+    //     payload: { activeId, overId },
+    //   });
+    // }
   };
 
   return (
     <>
       <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <DragOverlay
-          dropAnimation={{
-            duration: 200,
-            easing: "ease-in-out",
-          }}
+        // dropAnimation={{
+        //   duration: 200,
+        //   easing: "ease-in-out",
+        // }}
         >
           {activeTask ? (
             <div style={{ opacity: 0.9, transform: "scale(1.02)" }}>

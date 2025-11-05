@@ -6,10 +6,6 @@ import dayjs from "dayjs";
 
 const EndDate = (props) => {
   const { formik } = props;
-  // const handleEndDate = (e) => {
-  //   const date = new Date(e).toDateString();
-  //   setTask({ ...task, endDate: date });
-  // };
 
   return (
     <Box
@@ -21,8 +17,6 @@ const EndDate = (props) => {
         <DatePicker
           label="End Date"
           name="Start_Date"
-          // value={EndDate ? dayjs(EndDate) : null}
-          // onChange={(e) => handleEndDate(e)}
           value={formik.values.End_Date ? dayjs(formik.values.End_Date) : null}
           onChange={(value) => {
             formik.setFieldValue("End_Date", value ? value.toISOString() : "");

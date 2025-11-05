@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import OpenWithIcon from "@mui/icons-material/OpenWith";
 
 const TaskCard = (props) => {
   const { item } = props;
@@ -21,10 +22,13 @@ const TaskCard = (props) => {
           backgroundColor: "#ffffff14",
           borderColor: "#ffffff26",
         },
+        "&:hover .Open_Icon": {
+          visibility: "visible",
+          opacity: 0.4,
+        },
       }}
     >
       <Typography sx={{ marginTop: "10px" }}>{title || "Missing"}</Typography>
-      {/* <Typography sx={{ fontSize: "16x" }}>{status || "missing"}</Typography> */}
       <Box>
         <Typography
           sx={{
@@ -40,6 +44,23 @@ const TaskCard = (props) => {
         </Typography>
         {/* </Box> */}
         <br />
+        <Stack
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <OpenWithIcon
+            className="Open_Icon"
+            sx={{
+              color: "#22252D",
+              fontSize: "40px",
+              visibility: "hidden",
+            }}
+          />
+        </Stack>
+
         <Stack sx={{}}>
           {assignee ? (
             <Avatar sx={{ bgcolor: "blue" }}>
