@@ -66,7 +66,7 @@ const deleteStatusAction = (statusId) => {
 };
 const moveStatusAction = (data) => ({
   type: MOVE_STATUS,
-  payload: data,
+  payload: data, 
 });
 
 const movetaskAction = (data) => {

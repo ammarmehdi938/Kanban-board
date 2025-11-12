@@ -119,10 +119,10 @@ const counterReducer = (state = initialState, action) => {
       return {
         ...state,
         statuses: {
-          ...state.statuses.byId,
+          ...state.statuses,
           byId: {
-            ...state.statuses.byId[id],
-            ...updatedStatus,
+            ...state.statuses.byId,
+            [id]: { ...state.statuses.byId[id], ...updatedStatus },
           },
         },
       };

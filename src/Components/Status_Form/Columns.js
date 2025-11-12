@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Icon, Stack } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import TaskCard from "./TaskCard";
 import AddColumn from "./addColumn";
 import { useSelector } from "react-redux";
@@ -11,10 +11,7 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-// import * as CSS from "@dnd-kit/utilities";
 import { CSS } from "@dnd-kit/utilities";
-
-import { Opacity } from "@mui/icons-material";
 
 const SortableColumns = ({ id, children }) => {
   const {
@@ -44,8 +41,6 @@ const Columns = ({ updateTodo }) => {
   const tasks = useSelector((state) => state.tasks);
   const statuses = useSelector((state) => state.statuses);
   const statusKeys = statuses.allIds;
-
-  // const [activeId, setActiveId] = useState(null);
 
   return (
     <>
@@ -154,6 +149,7 @@ const Columns = ({ updateTodo }) => {
                                   data={task}
                                   item={task}
                                   updateTodo={updateTodo}
+                                  color={column.color}
                                 />
                               </Draggable>
                             </Box>

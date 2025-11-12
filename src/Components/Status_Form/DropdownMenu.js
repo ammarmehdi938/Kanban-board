@@ -4,12 +4,14 @@ import UpdateIcon from "@mui/icons-material/Update";
 import { Box, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteStatus } from "../../Store/Actions/TodoActions";
+import { useSelector } from "react-redux";
+import { deleteStatus, updateStatus } from "../../Store/Actions/TodoActions";
 
 const DropdownMenu = ({ taskId }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
+  const statuses = useSelector((state) => state.statuses);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -20,7 +22,24 @@ const DropdownMenu = ({ taskId }) => {
     deleteStatus(taskId, dispatch);
     handleCloseMenu();
   };
-  const handleUpdateColumn = () => {};
+  const handleUpdateColumn = () => {
+    const currentStatus = statuses.byId[taskId];
+    const newLabel = prompt("Enter new column name:", currentStatus.label);
+    const newColor = prompt("Enter new color (hex):", currentStatus.color);
+    if (newLabel && newColor) {
+      updateStatus(
+        {
+          id: taskId,
+          label: newLabel,
+          color: newColor,
+        },
+        dispatch
+      );
+    }
+
+    handleCloseMenu();
+  };
+
   return (
     <Box
       sx={{
@@ -56,7 +75,7 @@ const DropdownMenu = ({ taskId }) => {
             <DeleteIcon />
             Delete
           </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>
+          <MenuItem onClick={handleUpdateColumn}>
             <UpdateIcon />
             update
           </MenuItem>

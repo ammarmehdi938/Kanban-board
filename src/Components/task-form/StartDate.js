@@ -1,10 +1,7 @@
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { ContactSupportOutlined } from "@mui/icons-material";
 import dayjs from "dayjs";
-
-import AirplayIcon from "@mui/icons-material/Airplay";
 import { Box } from "@mui/material";
 
 const StartDate = (props) => {
@@ -18,10 +15,10 @@ const StartDate = (props) => {
     >
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          label="Start Date"
-          name="Start_Date"
+          label="startDate"
+          name="startDate"
           value={
-            formik.values.Start_Date ? dayjs(formik.values.Start_Date) : null
+            formik.values.startDate ? dayjs(formik.values.startDate) : null
           }
           onChange={(value) => {
             formik.setFieldValue(

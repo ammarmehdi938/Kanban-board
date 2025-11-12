@@ -3,7 +3,6 @@ import StartDate from "./StartDate";
 import EndDate from "./EndDate";
 import Priority from "./Priority";
 import Assignee from "./Assignee";
-import { useState } from "react";
 import { Button, Drawer, Box } from "@mui/material";
 import { Slide } from "@mui/material";
 import { useFormik } from "formik";
@@ -17,8 +16,6 @@ import {
 import Status from "./Status";
 
 const TaskForm = () => {
-  // const { data } = props;
-
   const dispatch = useDispatch();
 
   const taskDrawer = useSelector((state) => state.taskDrawer);
@@ -32,21 +29,22 @@ const TaskForm = () => {
   const formik = useFormik({
     initialValues: {
       title: taskData?.title || "",
-      Start_Date: taskData?.Start_Date || "",
-      End_Date: taskData?.End_Date || "",
+      startDate: taskData?.startDate || "",
+      endDate: taskData?.endDate || "",
       priority: taskData?.priority || "",
       status: taskData?.status || "",
       assignee: taskData?.assignee || "",
     },
+
     enableReinitialize: true,
     validationSchema: validationSchema,
     onSubmit: (values, { resetForm }) => {
       const newData = { ...taskData, ...values };
 
       if (mode === "edit") {
-        updateTask(newData, dispatch);
+        updateTask(dispatch, newData);
       } else {
-        createTask(newData, dispatch);  
+        createTask(newData, dispatch);
       }
 
       resetForm();
@@ -86,7 +84,6 @@ const TaskForm = () => {
     >
       <Box
         component="form"
-        // key={taskId || "new-task"}
         onSubmit={formik.onSubmit}
         sx={{
           display: "flex",
@@ -120,7 +117,6 @@ const TaskForm = () => {
             mt: "20px",
             borderRadius: "20px",
             width: "250px",
-            // height:'56px',
             "&:hover": {
               border: "2px solid #19bb84",
               color: "#19bb84",

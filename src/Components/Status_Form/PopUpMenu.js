@@ -2,7 +2,7 @@ import { MoreVert } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
 import { Box, Menu, MenuItem } from "@mui/material";
-import { useState } from "react"; 
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../../Store/Actions/TodoActions";
 import { openTaskDrawer } from "../../Store/Actions/TodoActions";
@@ -41,7 +41,7 @@ const PopUpMenu = ({ taskId }) => {
     >
       <MoreVert
         onClick={(e) => {
-          e.stopPropagation(); // prevent drag interference
+          e.stopPropagation();
           handleClick(e);
         }}
         sx={{ cursor: "pointer", zIndex: 9999 }}

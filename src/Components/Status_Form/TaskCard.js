@@ -1,17 +1,28 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
-
+import { HorizontalRule } from "@mui/icons-material";
 const TaskCard = (props) => {
-  const { item } = props;
-  const { title, startDate, endDate, priority, assignee } = item || {};
+  const { item, color } = props;
+  const { title, Start_Date, End_Date, priority, assignee } = item || {};
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "Missing";
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short", // "Nov"
+      day: "numeric", // "27"
+      year: "numeric", // "2025"
+    }).format(date);
+  };
 
   return (
     <Box
       sx={{
         margin: "20px",
         backgroundColor: "#FFFFFF0D",
+
         borderRadius: "12px",
         padding: "8px",
         boxShadow: "0 2px 8px #00000033",
@@ -29,20 +40,22 @@ const TaskCard = (props) => {
       }}
     >
       <Typography sx={{ marginTop: "10px" }}>{title || "Missing"}</Typography>
-      <Box>
+
+      <Box sx={{ marginTop: "10px" }}>
         <Typography
           sx={{
             fontSize: "12px",
-            backgroundColor: "red",
+            backgroundColor: `${color}`,
             display: "inline",
             padding: "2px 2px",
             borderRadius: "20px",
             textTransform: "uppercase",
+            padding: "4px",
+            marginTop: "20px",
           }}
         >
-          {priority || "High"}
+          {priority || "Missing"}
         </Typography>
-        {/* </Box> */}
         <br />
         <Stack
           sx={{
@@ -50,44 +63,42 @@ const TaskCard = (props) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-        >
-          <OpenWithIcon
-            className="Open_Icon"
-            sx={{
-              color: "#22252D",
-              fontSize: "40px",
-              visibility: "hidden",
-            }}
-          />
-        </Stack>
+        ></Stack>
 
-        <Stack sx={{}}>
+        <Stack sx={{ ml: "-18px", marginTop: "15px" }}>
           {assignee ? (
-            <Avatar sx={{ bgcolor: "blue" }}>
-              {assignee ? assignee : "null"}
-            </Avatar>
+            <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+              <Avatar sx={{ bgcolor: "#2563EB" }}>
+                {assignee ? assignee : "null"}
+              </Avatar>
+              <Typography sx={{ fontWeight: "lighter", mt: "8px" }}>
+                Assigned by {assignee}
+              </Typography>
+            </Box>
           ) : null}
         </Stack>
         <Stack direction="row" spacing={1} sx={{ marginTop: "10px" }}>
-          {startDate || endDate ? (
+          {Start_Date || Start_Date ? (
             <Stack
               sx={{ color: "#ffff", marginLeft: "10px", fontSize: "12px" }}
             >
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                {startDate && (
+              <Box>
+                {/* <HorizontalRule sx={{}}/> */}
+                {Start_Date && (
                   <Box sx={{ display: "flex" }}>
-                    <CalendarMonthIcon sx={{ fontSize: "large" }} />
-                    {startDate}
-                  </Box>
-                )}
-
-                {endDate && (
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <CalendarMonthIcon sx={{ fontSize: "large" }} />
-                    {endDate || "missing"}
+                    <CalendarTodayOutlinedIcon sx={{ fontSize: "large" }} />
+                    start:
+                    {formatDate(Start_Date)}
                   </Box>
                 )}
               </Box>
+
+              {End_Date && (
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <CalendarTodayOutlinedIcon sx={{ fontSize: "large" }} />
+                  Due:{formatDate(End_Date)}
+                </Box>
+              )}
             </Stack>
           ) : null}
 

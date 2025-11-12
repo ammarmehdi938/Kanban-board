@@ -1,4 +1,5 @@
 import { Box, Button, Checkbox, colors, Stack } from "@mui/material";
+import DraggableComponent from "../task-form/DragableComponent";
 
 import CheckBoxes from "./CheckBoxes";
 import { useFormik } from "formik";
@@ -112,6 +113,8 @@ const StatusForm = (props) => {
           }}
         />
         <CheckBoxes
+          // newColumn={newColumn}
+          // setNewColumn={setNewColumn}
           values={values}
           setFieldValue={setFieldValue}
           onChange={(e) => setFieldValue("isInitial", e.target.checked)}

@@ -1,23 +1,28 @@
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 
 const CheckBoxes = ({ values, setFieldValue }) => {
-  const handleChange = (field) => {
-    if (field === "isInitial") {
-      setFieldValue("isInitial", true);
-      setFieldValue("isFinal", false);
-    } else if (field === "isFinal") {
-      setFieldValue("isInitial", false);
-      setFieldValue("isFinal", true);
-    }
+  // const { newColumn, setNewColumn } = props;
+
+  const handleCheckBox = (event) => {
+    const { name, checked } = event.target;
+
+    // setNewColumn({
+    //   isInitial: name === "isInitial" ? checked : false,
+    //   isFinal: name === "isFinal" ? checked : false,
+    // });
   };
+  // console.log(newColumn);
+
   return (
     <FormGroup>
       <FormControlLabel
         control={
           <Checkbox
             checked={values.isInitial}
-            onChange={() => handleChange("isInitial")}
+            // onChange={handleCheckBox}
+            onChange={(e) => setFieldValue("isInitial", e.target.checked)}
             name="isInitial"
+            // value={values.isInitial}
           />
         }
         label="Is Initial"
@@ -27,8 +32,9 @@ const CheckBoxes = ({ values, setFieldValue }) => {
         control={
           <Checkbox
             checked={values.isFinal}
-            onChange={() => handleChange("isFinal")}
+            onChange={(e) => setFieldValue("isFinal", e.target.checked)}
             name="isFinal"
+            // value={values}
           />
         }
         label="Is Final"
