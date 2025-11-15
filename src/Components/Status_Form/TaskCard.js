@@ -1,8 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
 import { HorizontalRule } from "@mui/icons-material";
+// import { HorizontalRule } from "@mui/icons-material";
 const TaskCard = (props) => {
   const { item, color } = props;
   const { title, Start_Date, End_Date, priority, assignee } = item || {};
@@ -21,7 +22,8 @@ const TaskCard = (props) => {
     <Box
       sx={{
         margin: "20px",
-        backgroundColor: "#FFFFFF0D",
+        // backgroundColor: "#FFFFFF0D",
+        backgroundColor: "#1A283B",
 
         borderRadius: "12px",
         padding: "8px",
@@ -30,7 +32,7 @@ const TaskCard = (props) => {
         cursor: "pointer",
         "&:hover": {
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.4)",
-          backgroundColor: "#ffffff14",
+          backgroundColor: "#1A283B",
           borderColor: "#ffffff26",
         },
         "&:hover .Open_Icon": {
@@ -39,8 +41,19 @@ const TaskCard = (props) => {
         },
       }}
     >
-      <Typography sx={{ marginTop: "10px" }}>{title || "Missing"}</Typography>
-
+      <Typography
+        sx={{
+          textAlign: "center",
+          // marginTop: "10px",
+          color: "#8D97AA",
+          fontSize: "20px",
+        }}
+      >
+        {title || "Missing"}
+      </Typography>
+      <Box sx={{ color: "#293649" }}>
+        <Divider sx={{ color: "#293749", marginTop: "10px" }} />
+      </Box>
       <Box sx={{ marginTop: "10px" }}>
         <Typography
           sx={{
@@ -82,7 +95,7 @@ const TaskCard = (props) => {
             <Stack
               sx={{ color: "#ffff", marginLeft: "10px", fontSize: "12px" }}
             >
-              <Box>
+              <Box sx={{ marginBottom: "10px" }}>
                 {/* <HorizontalRule sx={{}}/> */}
                 {Start_Date && (
                   <Box sx={{ display: "flex" }}>
@@ -93,12 +106,14 @@ const TaskCard = (props) => {
                 )}
               </Box>
 
-              {End_Date && (
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <CalendarTodayOutlinedIcon sx={{ fontSize: "large" }} />
-                  Due:{formatDate(End_Date)}
-                </Box>
-              )}
+              <Box sx={{ marginBottom: "10px" }}>
+                {End_Date && (
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <CalendarTodayOutlinedIcon sx={{ fontSize: "large" }} />
+                    Due:{formatDate(End_Date)}
+                  </Box>
+                )}
+              </Box>
             </Stack>
           ) : null}
 

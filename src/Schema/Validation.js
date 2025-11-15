@@ -1,4 +1,3 @@
-import { colors } from "@mui/material";
 import * as Yup from "yup";
 
 export const InputValidationSchema = Yup.object({

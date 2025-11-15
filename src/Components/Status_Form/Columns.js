@@ -40,7 +40,19 @@ const SortableColumns = ({ id, children }) => {
 const Columns = ({ updateTodo }) => {
   const tasks = useSelector((state) => state.tasks);
   const statuses = useSelector((state) => state.statuses);
-  const statusKeys = statuses.allIds;
+  const allStatuses = statuses.allIds.map((id) => statuses.byId[id]);
+  const sortedStatuses = allStatuses.sort((a, b) => {
+    // Initials come first
+    if (a.isInitial && !b.isInitial) return -1;
+    if (!a.isInitial && b.isInitial) return 1;
+
+    // Finals come last
+    if (a.isFinal && !b.isFinal) return 1;
+    if (!a.isFinal && b.isFinal) return -1;
+
+    return 0; // keep other order same
+  });
+  const statusKeys = sortedStatuses.map((status) => status.id);
 
   return (
     <>
@@ -150,7 +162,7 @@ const Columns = ({ updateTodo }) => {
                                   item={task}
                                   updateTodo={updateTodo}
                                   color={column.color}
-                                />
+                                ></TaskCard>
                               </Draggable>
                             </Box>
                           );
