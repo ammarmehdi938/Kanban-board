@@ -1,0 +1,17 @@
+.Settings {
+  background-color: #ffffff;
+  padding: 20px;
+  width: 400px;
+  border: 1px solid #eff2f3;
+}
+
+.settingMainDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+button {
+  background-color: #ffffff;
+  color: aquamarine;
+}

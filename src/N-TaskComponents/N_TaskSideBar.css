@@ -1,0 +1,160 @@
+* {
+  overflow: hidden;
+}
+
+.sideBar {
+  height: 100vh;
+  width: 260px;
+  background-color: #15202c;
+  color: #c6c9cb;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1f2b36;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Logo */
+.logo {
+  display: block;
+  height: 26px;
+  width: 92px;
+  margin: 0px auto;
+}
+
+/* Horizontal rule */
+.sideBarHr {
+  border: none;
+  height: 1px;
+  background-color: #1b2f3d;
+  margin: 10px 0;
+}
+
+/* Section wrapper */
+.sideSection {
+  padding: 0 15px;
+}
+
+/* Organization / Workspace rows */
+.sideOrg {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  cursor: pointer;
+  justify-content: space-between;
+  border-radius: 5px;
+  height: 60px;
+  padding: 0px 5px;
+  background-color: #2d3742;
+}
+.avatar {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+  line-height: 38px;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.orange {
+  background-color: #f89615;
+  color: #fff;
+}
+.yellow {
+  background-color: #f0ca2d;
+  color: #000;
+}
+.green {
+  background-color: #20cc90;
+  color: #fff;
+}
+
+/* Organization / Workspace text */
+.orgInfo .organization {
+  font-size: 12px;
+  color: #8ea2b1;
+  margin: 0;
+}
+
+.orgInfo .sub {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d7d7d7;
+  margin: 0;
+}
+
+/* Sidebar menu */
+.sideBarMenu {
+  list-style: none;
+  padding: 0;
+  /* margin-top: ; */
+}
+
+.sideBarList {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 15px;
+  border-radius: 5px;
+  height: 35px;
+  color: #90959b;
+}
+
+.sideBarList:hover {
+  background-color: #1f2b36;
+  color: #fff;
+}
+
+/* Links inside menu */
+.linkItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Footer button */
+.sideBarButton {
+  padding: 10px 60px;
+  align-self: center;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  background-color: #f0ca2d;
+}
+
+/* Footer info */
+.sideBarFooter {
+  display: flex;
+  align-items: center;
+  /* margin-top: 2px; */
+  gap: 12px;
+  padding: 0 10px;
+}
+
+.footerName {
+  margin: 0;
+}
+
+.footerRole {
+  margin: 0;
+  font-size: 12px;
+  color: #8ea2b1;
+}
+
+.sideBarList:hover .sideBarIcon {
+  color: #20cc90;
+}
+
+.boards:active {
+  background-color: #20cc90;
+}

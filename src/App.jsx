@@ -1,14 +1,6 @@
 import User from "./User";
 
-
-function Application(){
-    return (
-        <div>
-            zeeshan haider
-            Ammar Mehdi
-
-
-        </div>
-    )
+function Application() {
+  return <div></div>;
 }
 export default Application;

@@ -1,0 +1,96 @@
+/* Main container grid */
+.rw-container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-auto-rows: 90px;
+  height: 100vh;
+}
+
+.main-ul {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.main-ul li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.main-ul li:last-child {
+  padding: 8px 10px; /* Gear icon only */
+}
+
+.main-ul i {
+  font-size: 14px;
+}
+
+/* HEADER spans 2 columns */
+.rw-header {
+  grid-column: 1 / 3;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+/* Empty cell under sidebar for month row alignment */
+.rw-sidebar-empty {
+  border-right: 1px solid #e9e9e9;
+}
+
+/* Month row */
+.rw-month-row {
+  display: grid;
+  grid-template-rows: 30px 60px;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.full-row {
+  border-bottom: 1px solid #e9e9e9;
+  padding: 5px 10px;
+  font-weight: 600;
+}
+
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  text-align: center;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.day-cell {
+  border-right: 1px solid #e9e9e9;
+  line-height: 60px;
+}
+
+/* Sidebar dev rows */
+.rw-sidebar-row {
+  display: grid;
+  grid-template-columns: 25px 40px 1fr;
+  align-items: center;
+  padding: 0 10px;
+  /* border-right: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9; */
+}
+
+/* Grid rows */
+.rw-grid-row {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.cell {
+  border-right: 1px solid #e9e9e9;
+}

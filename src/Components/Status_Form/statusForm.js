@@ -26,15 +26,8 @@ const StatusForm = (props) => {
       });
     },
   });
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    setFieldValue,
-  } = formik;
+  const { values, handleChange, handleBlur, handleSubmit, setFieldValue } =
+    formik;
 
   return (
     <form onSubmit={handleSubmit}>

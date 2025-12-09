@@ -1,0 +1,51 @@
+.signUp {
+  background-color: #1d2738;
+  height: 100vh;
+  min-width: 100%;
+  margin: 10px;
+  border-radius: 10px;
+  color: #384d54;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+input {
+  background-color: #1d2738;
+  border: 2px solid #384d54;
+  border-radius: 5px;
+  width: 300px;
+  height: 30px;
+  color: #384d54;
+}
+input:focus {
+  background-color: #1d2738;
+}
+::placeholder {
+  padding-left: 20px;
+  color: #384d54;
+}
+
+label {
+  display: block;
+  margin: 5px;
+  color: #384d54;
+}
+
+a {
+  text-decoration: none;
+  color: #384d54;
+}
+.forget {
+  display: block;
+  margin-top: 3px;
+  margin-left: 175px;
+}
+button {
+  height: 37px;
+  width: 308px;
+  background-color: #1d2738;
+  border: 2px solid #384d54;
+  border-radius: 5px;
+  color: #384d54;
+}
