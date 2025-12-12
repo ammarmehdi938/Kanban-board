@@ -1,10 +1,10 @@
 // import Main from "../../Components/Status_Form/Main";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import TaskForm from "../../../Components/task-form/TaskForm";
-import MainHeader from "../../../Components/Status_Form/MainHeader";
-import Header from "../../../Components/Status_Form/Header";
-import Columns from "../../../Components/Status_Form/Columns";
+import TaskForm from "../../Components/task-form/TaskForm";
+import MainHeader from "../../Components/Status_Form/MainHeader";
+import Header from "../../Components/Status_Form/Header";
+import Columns from "../../Components/Status_Form/Columns";
 // import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

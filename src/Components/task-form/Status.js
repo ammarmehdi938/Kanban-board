@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Box } from "@mui/material";
-import { STATUS } from "../../pages/pages/utils/utils";
+import { STATUS } from "../../pages/utils/utils";
 
 const Status = (props) => {
   const { formik } = props;

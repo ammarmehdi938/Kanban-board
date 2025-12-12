@@ -4,14 +4,53 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import Link from "@mui/material/Link";
+import { useNavigate } from "react-router-dom";
+import { signInValidationSchema } from "../../Schema/Validation";
+import axios from "axios";
+import axiosInstance from "../../Interceptors/axiosInterceptors";
+
 function SignIn() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      console.log("Form Submitted:", values);
+    validationSchema: signInValidationSchema,
+
+    onSubmit: async (values, { setSubmitting, setErrors }) => {
+      try {
+        const payload = {
+          email: values.email,
+          password: values.password,
+        };
+        const response = await axios.post(
+          "http://127.0.0.1:9191/login",
+          payload,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.status === 200 || response.status === 201) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+
+          navigate("/kanban");
+        }
+      } catch (error) {
+        if (error.response) {
+          setErrors({ apiError: "Please enter a valid email" });
+        } else if (error.request) {
+          setErrors({
+            apiError: "No response from server. Please check your connection.",
+          });
+        } else {
+          setErrors({ apiError: "Something went wrong. Please try again." });
+        }
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -25,7 +64,7 @@ function SignIn() {
             gap: 5,
             width: 300,
             margin: "auto",
-            marginTop: 8,
+            paddingTop: 5,
             borderRadius: 2,
           }}
         >
@@ -33,12 +72,40 @@ function SignIn() {
             Welcome Back
           </Typography>
 
+          {formik.errors.apiError && (
+            <Typography variant="body2" color="error">
+              {formik.errors.apiError}
+            </Typography>
+          )}
+
           <TextField
             label="Email Address"
             type="email"
             name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "#06070fff", // normal border
+                  borderWidth: 2,
+                },
+                "&:hover fieldset": {
+                  borderColor: "#373C74", // hover border
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#06070fff", // focused border
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "#333333", // normal label color
+                "&.Mui-focused": {
+                  color: "#06070fff", // focused label color
+                },
+              },
+            }}
           />
 
           <TextField
@@ -47,22 +114,56 @@ function SignIn() {
             name="password"
             value={formik.values.password}
             onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "#06070fff", // normal border
+                  borderWidth: 2,
+                },
+                "&:hover fieldset": {
+                  borderColor: "#373C74", // hover border
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#06070fff", // focused border
+                },
+              },
+              "& .MuiInputLabel-root": {
+                color: "#333333", // normal label color
+                "&.Mui-focused": {
+                  color: "#06070fff", // focused label color
+                },
+              },
+            }}
           />
 
           <Typography variant="body2">
-            <Link href="/forgotPassword">Forgot Password?</Link>
+            <Link
+              href="/resetpassword"
+              sx={{ color: "#06070fff", textDecoration: "none" }}
+            >
+              Forgot Password?
+            </Link>
           </Typography>
 
           <Button
             type="submit"
-            sx={{ width: 280, backgroundColor: "#333333" }}
+            sx={{ width: 280, backgroundColor: "#1976D2" }}
             variant="contained"
           >
             Sign In
           </Button>
 
           <Typography variant="body2" color="#333333">
-            Don't have an account?<Link href="/signUp"> Sign Up</Link>
+            Don't have an account?
+            <Link
+              href="/signUp"
+              sx={{ color: "#06070fff", textDecoration: "none" }}
+            >
+              {" "}
+              Sign Up
+            </Link>
           </Typography>
         </Box>
       </form>

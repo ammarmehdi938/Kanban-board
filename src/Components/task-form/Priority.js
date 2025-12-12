@@ -2,7 +2,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { PRIORITY } from "../../pages/pages/utils/utils";
+import { PRIORITY } from "../../pages/utils/utils";
 import { Box } from "@mui/material";
 
 const Priority = (props) => {

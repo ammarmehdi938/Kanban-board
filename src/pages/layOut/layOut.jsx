@@ -1,31 +1,26 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
-import N_TaskSideBar from "./N-TaskComponents/N_TaskSideBar";
-import SignIn from "./signIn/SignIn";
-import SignUp from "./signUp/SignUp";
-import ForgotPassword from "./forgotPassword/ForgotPassword";
-import ResetPassword from "./resetPassword/ResetPassword";
-import Kanban from "./kanban/Kanban";
+
+import N_TaskSideBar from "../sideBar/sideBar";
+import SignIn from "../signIn/SignIn";
+import SignUp from "../signUp/SignUp";
+import ResetPassword from "../resetPassword.jsx/resetPassword";
+import ConfirmPassword from "../confirmPassword.jsx/confirmPassword";
+import ResetToken from "../resetToken/resetToken";
+import Kanban from "../kanban/kanban";
+import ProtectedRoute from "../utils/protectedRoute";
 
 export default function Layout() {
   const location = useLocation();
 
-  // Axios interceptor
-  useEffect(() => {
-    axios.interceptors.request.use((request) => {
-      console.log("Starting Request", request);
-      return request;
-    });
-  }, []);
-
-  // Routes where sidebar should NOT appear
   const hideSidebarRoutes = [
     "/",
     "/signup",
     "/signin",
-    "/forgotpassword",
     "/resetpassword",
+    "/confirmpassword",
+    "/resettoken",
+    "/reset-password",
   ];
 
   const hideSidebar = hideSidebarRoutes.includes(
@@ -48,14 +43,16 @@ export default function Layout() {
           <Route path="/" element={<SignIn />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/resetPassword" element={<ResetPassword />} />
+          <Route path="/reset-password" element={<ConfirmPassword />} />
+          <Route path="/resettoken" element={<ResetToken />} />
 
           {/* Sidebar routes */}
-          <Route path="/kanban" element={<Kanban />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/kanban" element={<Kanban />} />
+          </Route>
         </Routes>
       </div>
     </div>
   );
 }
-F;
