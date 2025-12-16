@@ -22,7 +22,7 @@ import BugReportIcon from "@mui/icons-material/BugReport";
 import SettingsIcon from "@mui/icons-material/Tune";
 import PhoneIcon from "@mui/icons-material/Phone";
 
-function N_TaskSideBar() {
+function SideBar() {
   return (
     <Box
       sx={{
@@ -74,7 +74,6 @@ function N_TaskSideBar() {
           <Typography>{">"}</Typography>
         </Box>
 
-        {/* Workspace */}
         <Box
           sx={{
             display: "flex",
@@ -98,7 +97,6 @@ function N_TaskSideBar() {
         </Box>
       </Box>
 
-      {/* Menu */}
       <List sx={{ mt: 1 }}>
         <ListItemButton>
           <ListItemIcon sx={{ color: "#90959b" }}>
@@ -175,7 +173,6 @@ function N_TaskSideBar() {
         </ListItemButton>
       </List>
 
-      {/* Footer Button */}
       <Button
         variant="contained"
         sx={{
@@ -208,4 +205,4 @@ function N_TaskSideBar() {
   );
 }
 
-export default N_TaskSideBar;
+export default SideBar;

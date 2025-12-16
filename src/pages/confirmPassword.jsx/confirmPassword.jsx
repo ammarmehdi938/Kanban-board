@@ -9,7 +9,6 @@ function ConfirmPassword() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
-  console.log("Token:", token);
 
   const formik = useFormik({
     initialValues: { newPassword: "", confirmPassword: "" },
@@ -17,17 +16,17 @@ function ConfirmPassword() {
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         const payload = {
-          newPassword: values.newPassword,
-          confirmPassword: values.confirmPassword,
+          new_password: values.newPassword,
+          confirm_password: values.confirmPassword,
           token: token,
         };
         const response = await axios.patch(
           "http://127.0.0.1:9191/reset-password",
-          // payload,
+          payload,
           {
             headers: {
               "Content-Type": "application/json",
-              token: token, 
+              // token: token,
             },
           }
         );
@@ -66,7 +65,6 @@ function ConfirmPassword() {
             value={formik.values.newPassword}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            // autoComplete="new-password"
             error={
               formik.touched.newPassword && Boolean(formik.errors.newPassword)
             }

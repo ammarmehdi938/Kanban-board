@@ -7,7 +7,6 @@ import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 import { signInValidationSchema } from "../../Schema/Validation";
 import axios from "axios";
-import axiosInstance from "../../Interceptors/axiosInterceptors";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -36,7 +35,7 @@ function SignIn() {
         if (response.status === 200 || response.status === 201) {
           localStorage.setItem("user", JSON.stringify(response.data));
 
-          navigate("/kanban");
+          navigate("/boards");
         }
       } catch (error) {
         if (error.response) {
@@ -141,6 +140,7 @@ function SignIn() {
           <Typography variant="body2">
             <Link
               href="/resetpassword"
+              s
               sx={{ color: "#06070fff", textDecoration: "none" }}
             >
               Forgot Password?
