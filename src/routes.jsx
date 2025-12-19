@@ -1,19 +1,15 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import VerifyEmail from "./pages/verifyEmail/verifyEmail";
-import SideBar from "./pages/sideBar/sideBar";
+import SideBar from "./Components/sideBar";
 import SignIn from "./pages/signIn/SignIn";
-// import SignUp from "./pages/signup/SignUp";
 import SignUp from "./pages/signUp/SignUp";
-
+import MainSideBar from "./Components/mainSide";
+import ChangePassword from "./pages/changePassword/changePassword";
 import ResetPassword from "./pages/resetPassword.jsx/resetPassword";
 import ConfirmPassword from "./pages/confirmPassword.jsx/confirmPassword";
 import ResetToken from "./pages/resetToken/resetToken";
 import Kanban from "./pages/kanban/kanban";
-import Layout from "./pages/layOut/layOut";
-import ProtectedRoute from "./pages/utils/protectedRoute";
-import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
-
+import Workload from "./pages/Workload/Workload";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -22,19 +18,11 @@ const AppRoutes = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/resetPassword" element={<ResetPassword />} />
       <Route path="/reset-password" element={<ConfirmPassword />} />
+      <Route path="/change-password" element={<ChangePassword />} />
       <Route path="/resettoken" element={<ResetToken />} />
       <Route path="/verified" element={<VerifyEmail />}></Route>
-      <Route path="/sidebar" element={<SideBar />}></Route>
+      <Route path="/workload" element={<Workload />}></Route>
       <Route path="/boards" element={<Kanban />} />
-
-      <Route path="/sidebar" element={<SideBar />}></Route>
-      <Route path="/boards" element={<Kanban />} />
-      <Route path="/sidebar" element={<SideBar />}></Route>
-      <Route path="/boards" element={<Kanban />} />
-
-      <Route element={<ProtectedRoute />}>
-        <Route path="/layout" element={<Layout />}></Route>
-      </Route>
     </Routes>
   );
 };

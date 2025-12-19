@@ -29,7 +29,10 @@ export const signUpValidationSchema = Yup.object({
   userName: Yup.string()
     .min(3, "Username must be at least 3 characters")
     .required("Username is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
+  email: Yup.string()
+    .trim()
+    .email("Invalid email")
+    .required("Email is required"),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
@@ -54,6 +57,19 @@ export const confirmPasswordValidationSchema = Yup.object({
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
   confirmPassword: Yup.string()
+    .oneOf([Yup.ref("newPassword")], "Passwords must match")
+    .required("Confirm your password"),
+});
+
+export const changePasswordValidationSchema = Yup.object({
+  currentPassword: Yup.string().min(
+    8,
+    "password must be at least 8 characters"
+  ),
+  newPassword: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
+  confirmNewPassword: Yup.string()
     .oneOf([Yup.ref("newPassword")], "Passwords must match")
     .required("Confirm your password"),
 });

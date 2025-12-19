@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+// import Layout from "./layOut";
 import {
   Box,
   Typography,
@@ -105,7 +106,7 @@ function SideBar() {
           <ListItemText primary="Reporting" />
         </ListItemButton>
 
-        <ListItemButton component={Link} to="/Resource Workload">
+        <ListItemButton component={Link} to="/workload">
           <ListItemIcon sx={{ color: "#90959b" }}>
             <PeopleAltIcon />
           </ListItemIcon>
@@ -165,11 +166,11 @@ function SideBar() {
 
         <Divider sx={{ bgcolor: "#1b2f3d", my: 1 }} />
 
-        <ListItemButton component={Link} to="/SignUp">
+        <ListItemButton component={Link} to="/change-password">
           <ListItemIcon sx={{ color: "#90959b" }}>
             <SettingsIcon />
           </ListItemIcon>
-          <ListItemText primary="Sign Up" />
+          <ListItemText primary="Change Password" />
         </ListItemButton>
       </List>
 
@@ -191,7 +192,6 @@ function SideBar() {
         Talk to Sales
       </Button>
 
-      {/* Footer Profile */}
       <Box sx={{ display: "flex", alignItems: "center", px: 2, mb: 1 }}>
         <Avatar sx={{ bgcolor: "#20cc90", color: "#fff" }}>FL</Avatar>
         <Box sx={{ ml: 2 }}>

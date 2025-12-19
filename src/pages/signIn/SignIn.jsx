@@ -7,6 +7,7 @@ import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 import { signInValidationSchema } from "../../Schema/Validation";
 import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -23,18 +24,11 @@ function SignIn() {
           email: values.email,
           password: values.password,
         };
-        const response = await axios.post(
-          "http://127.0.0.1:9191/login",
-          payload,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (response.status === 200 || response.status === 201) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+        const response = await axiosInstance.post("/login", payload);
+        console.log(response);
 
+        if (response.status === 200 || response.status === 201) {
+          sessionStorage.setItem("accessToken", response.data.access_token);
           navigate("/boards");
         }
       } catch (error) {

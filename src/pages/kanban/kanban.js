@@ -3,11 +3,8 @@ import TaskForm from "../../Components/task-form/TaskForm";
 import MainHeader from "../../Components/Status_Form/MainHeader";
 import Header from "../../Components/Status_Form/Header";
 import Columns from "../../Components/Status_Form/Columns";
-import { useNavigate } from "react-router-dom";
-
+import withLayout from "../../Components/withLayout";
 const Kanban = () => {
-  const navigate = useNavigate();
-
   return (
     <Box sx={{ width: "100%" }}>
       <TaskForm />
@@ -45,4 +42,4 @@ const Kanban = () => {
   );
 };
 
-export default Kanban;
+export default withLayout(Kanban);

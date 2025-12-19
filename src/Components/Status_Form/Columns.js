@@ -4,8 +4,8 @@ import AddColumn from "./addColumn";
 import { useSelector } from "react-redux";
 import PopUpMenu from "./PopUpMenu";
 import DropdownMenu from "./DropdownMenu";
-import { Draggable } from "../Drag&Drop";
-import { Dropapble } from "../Drag&Drop";
+import { Draggable } from "../task-form/Drag&Drop";
+import { Dropapble } from "../task-form/Drag&Drop";
 import {
   SortableContext,
   useSortable,

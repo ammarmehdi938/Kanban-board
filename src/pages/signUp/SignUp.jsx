@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import { signUpValidationSchema } from "../../Schema/Validation";
 import VerifyEmail from "../verifyEmail/verifyEmail";
 import { useSearchParams } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 
 function SignUp() {
   const [searchParams] = useSearchParams();
@@ -34,16 +35,7 @@ function SignUp() {
           confirm_password: values.confirmPassword,
         };
 
-        const response = await axios.post(
-          "http://127.0.0.1:9191/register",
-          payload,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            timeout: 15000,
-          }
-        );
+        const response = await axiosInstance.post("/register", payload);
 
         if (response.status === 200 || response.status === 201) {
           localStorage.setItem("user", JSON.stringify(response.data));
@@ -102,20 +94,20 @@ function SignUp() {
               width: "300px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "#06070fff", // normal border
+                  borderColor: "#06070fff",
                   borderWidth: 2,
                 },
                 "&:hover fieldset": {
-                  borderColor: "#373C74", // hover border
+                  borderColor: "#373C74",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#06070fff", // focused border
+                  borderColor: "#06070fff",
                 },
               },
               "& .MuiInputLabel-root": {
-                color: "#333333", // normal label color
+                color: "#333333", //
                 "&.Mui-focused": {
-                  color: "#06070fff", // focused label color
+                  color: "#06070fff", //
                 },
               },
             }}
@@ -132,20 +124,20 @@ function SignUp() {
               width: "300px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "#06070fff", // normal border
+                  borderColor: "#06070fff",
                   borderWidth: 2,
                 },
                 "&:hover fieldset": {
-                  borderColor: "#373C74", // hover border
+                  borderColor: "#373C74",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#06070fff", // focused border
+                  borderColor: "#06070fff",
                 },
               },
               "& .MuiInputLabel-root": {
-                color: "#333333", // normal label color
+                color: "#333333", //
                 "&.Mui-focused": {
-                  color: "#06070fff", // focused label color
+                  color: "#06070fff", //
                 },
               },
             }}
@@ -162,20 +154,20 @@ function SignUp() {
               width: "300px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "#06070fff", // normal border
+                  borderColor: "#06070fff",
                   borderWidth: 2,
                 },
                 "&:hover fieldset": {
-                  borderColor: "#373C74", // hover border
+                  borderColor: "#373C74",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#06070fff", // focused border
+                  borderColor: "#06070fff",
                 },
               },
               "& .MuiInputLabel-root": {
-                color: "#333333", // normal label color
+                color: "#333333", //
                 "&.Mui-focused": {
-                  color: "#06070fff", // focused label color
+                  color: "#06070fff", //
                 },
               },
             }}
@@ -192,20 +184,20 @@ function SignUp() {
               width: "300px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "#06070fff", // normal border
+                  borderColor: "#06070fff",
                   borderWidth: 2,
                 },
                 "&:hover fieldset": {
-                  borderColor: "#373C74", // hover border
+                  borderColor: "#373C74",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#06070fff", // focused border
+                  borderColor: "#06070fff",
                 },
               },
               "& .MuiInputLabel-root": {
-                color: "#333333", // normal label color
+                color: "#333333", //
                 "&.Mui-focused": {
-                  color: "#06070fff", // focused label color
+                  color: "#06070fff", //
                 },
               },
             }}
@@ -222,20 +214,20 @@ function SignUp() {
               width: "300px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "#06070fff", // normal border
+                  borderColor: "#06070fff",
                   borderWidth: 2,
                 },
                 "&:hover fieldset": {
-                  borderColor: "#373C74", // hover border
+                  borderColor: "#373C74",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#06070fff", // focused border
+                  borderColor: "#06070fff",
                 },
               },
               "& .MuiInputLabel-root": {
-                color: "#333333", // normal label color
+                color: "#333333", //
                 "&.Mui-focused": {
-                  color: "#06070fff", // focused label color
+                  color: "#06070fff", //
                 },
               },
             }}
@@ -257,20 +249,20 @@ function SignUp() {
               width: "300px",
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: "#06070fff", // normal border
+                  borderColor: "#06070fff",
                   borderWidth: 2,
                 },
                 "&:hover fieldset": {
-                  borderColor: "#373C74", // hover border
+                  borderColor: "#373C74",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#06070fff", // focused border
+                  borderColor: "#06070fff",
                 },
               },
               "& .MuiInputLabel-root": {
-                color: "#333333", // normal label color
+                color: "#333333", //
                 "&.Mui-focused": {
-                  color: "#06070fff", // focused label color
+                  color: "#06070fff", //
                 },
               },
             }}

@@ -13,7 +13,7 @@ import {
   KeyboardArrowRight,
 } from "@mui/icons-material";
 
-function N_TaskMainSideBar() {
+function MainSideBar() {
   const developers = [
     {
       avatar: "Fl",
@@ -51,6 +51,7 @@ function N_TaskMainSideBar() {
     <Box
       sx={{
         width: 300,
+        height: "100%",
         mt: 2,
         borderRight: "1px solid #e9e9e9",
         display: "flex",
@@ -130,4 +131,4 @@ function N_TaskMainSideBar() {
   );
 }
 
-export default N_TaskMainSideBar;
+export default MainSideBar;
